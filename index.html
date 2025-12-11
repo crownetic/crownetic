@@ -1,598 +1,833 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Crownetic — Websites & Tools for Growing Companies</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Crownetic – Minimal websites & tools die werk lichter maken</title>
+
+  <meta name="description" content="Crownetic ontwerpt en bouwt minimal websites, interne tools en AI-flows die tijd besparen en werk lichter maken. Rustige interfaces, moderne front-end." />
+  <link rel="canonical" href="https://crownetic.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Crownetic – Minimal websites & tools die werk lichter maken" />
+  <meta property="og:description" content="Minimal, rustige interfaces voor websites, interne tools en AI-flows. Gericht op tijd besparen en werk makkelijker maken." />
+  <meta property="og:url" content="https://crownetic.com/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Crownetic",
+    "url": "https://crownetic.com/",
+    "email": "mailto:crownetic@hotmail.com"
+  }
+  </script>
+
   <style>
     :root {
-      --bg: #f6f7fb;
-      --card: #ffffff;
-      --text: #1e2433;
-      --muted: #5d6678;
-      --accent: #2f7cf6;
-      --accent-strong: #1f6ae0;
-      --accent-warm: #f2c38f;
-      --accent-pink: #f7a6d9;
-      --border: #e4e7ee;
+      --bg: #f5f5f7;
+      --bg-soft: #ffffff;
+      --accent: #0f8fff;
+      --accent-soft: #e6f2ff;
+      --text: #111118;
+      --muted: #75757f;
+      --border-subtle: rgba(0, 0, 0, 0.06);
+      --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.10);
+      --radius-xl: 32px;
+      --radius-lg: 22px;
+      --radius-md: 12px;
+      --max-width: 1080px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
       min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffffff 0, #f5f5f7 45%, #e7e7f0 100%);
+      color: var(--text);
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
+
+    main {
+      width: 100%;
+      max-width: var(--max-width);
+      padding: 40px 20px 72px;
+    }
+
+    /* HEADER */
 
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 6vw;
-      position: sticky;
-      top: 0;
-      background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(10px);
-      z-index: 10;
-      border-bottom: 1px solid var(--border);
+      gap: 20px;
+      padding-bottom: 24px;
     }
 
-    .logo {
-      font-weight: 700;
-      letter-spacing: 0.5px;
+    .brand {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .logo-circle {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-      display: grid;
-      place-items: center;
-      color: #ffffff;
-      font-weight: 800;
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .brand-text-main {
       font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: lowercase;
+    }
+
+    .brand-text-sub {
+      font-size: 11px;
+      color: var(--muted);
     }
 
     nav {
       display: flex;
-      gap: 18px;
-      font-size: 14px;
-      color: var(--muted);
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     nav a {
-      color: inherit;
+      color: var(--muted);
       text-decoration: none;
-      padding: 8px 10px;
-      border-radius: 8px;
-      transition: color 0.2s ease, background 0.2s ease;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
     }
 
     nav a:hover {
       color: var(--text);
-      background: rgba(47,124,246,0.08);
+      border-color: var(--border-subtle);
+      background: rgba(255, 255, 255, 0.9);
     }
 
-    .cta {
-      padding: 10px 16px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-      color: #ffffff;
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.2;
+      border-radius: 999px;
+      padding: 7px 14px;
       border: none;
-      border-radius: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      box-shadow: none;
+      background: #111118;
+      color: #f5f5f7;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
     }
 
-    .cta:hover { transform: translateY(-1px); }
-    .cta:active { transform: translateY(0); }
-
-    main {
-      flex: 1;
-      padding: 70px 6vw 100px;
-      display: grid;
-      gap: 110px;
+    .nav-cta:hover {
+      opacity: 0.9;
     }
+
+    /* HERO */
 
     .hero {
+      margin-top: 32px;
+      margin-bottom: 60px;
+      padding: 46px 36px 40px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, #ffffff, #f7fbff);
+      box-shadow: var(--shadow-soft);
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 48px;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 2fr);
+      gap: 40px;
       align-items: center;
     }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(47,124,246,0.08);
-      color: var(--text);
-      font-weight: 600;
-      font-size: 13px;
-    }
-
-    h1 {
-      margin: 8px 0 12px;
-      font-size: clamp(32px, 5vw, 46px);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-    }
-
-    .lead {
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.6;
-      margin: 0 0 14px;
-    }
-
-    .hand-note {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: rgba(47,124,246,0.08);
-      border: 1px solid rgba(47,124,246,0.16);
-      color: var(--text);
-      font-weight: 600;
-      box-shadow: none;
-    }
-
-    .underline {
-      display: inline-block;
-      position: relative;
-    }
-
-    .underline::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 100%;
-      height: 6px;
-      background: linear-gradient(90deg, rgba(47,124,246,0.35), rgba(242,195,143,0.35));
-      opacity: 0.7;
-      filter: blur(4px);
-      z-index: -1;
-    }
-
-    .kpi-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 12px;
-      margin: 16px 0 12px;
-    }
-
-    .kpi-row { display: none; }
-
-    .hero-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
-      display: grid;
-      gap: 12px;
-      box-shadow: none;
-    }
-
-    .hero-card strong { color: var(--text); }
-
-    .quote-card {
-      background: #f9fbff;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
-      display: grid;
-      gap: 6px;
-      box-shadow: none;
-    }
-
-    .quote-card strong { font-size: 18px; }
-    .quote-card small { color: var(--muted); }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 18px;
-      border: 1px solid rgba(255,255,255,0.05);
-      box-shadow: 0 10px 35px rgba(0,0,0,0.25);
-    }
-
-    .card h3 {
-      margin: 8px 0 10px;
-      font-size: 18px;
-    }
-
-    .card p { color: var(--muted); line-height: 1.5; }
 
     .pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(47,124,246,0.08);
-      font-size: 12px;
-      color: var(--text);
-      font-weight: 600;
-      margin-right: 8px;
-      border: 1px solid var(--border);
-    }
-
-    .list {
-      list-style: none;
-      padding: 0;
-      margin: 12px 0 0;
-      display: grid;
       gap: 8px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      font-size: 11px;
       color: var(--muted);
     }
 
-    .list li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .dot {
+    .pill-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-      box-shadow: 0 0 0 4px rgba(94,207,255,0.12);
+      background: #17c964;
     }
 
-    .bar {
-      width: 100%;
-      height: 6px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 999px;
-      overflow: hidden;
-      margin: 8px 0;
+    h1 {
+      font-size: clamp(32px, 4vw, 40px);
+      line-height: 1.15;
+      margin: 20px 0 12px;
+      letter-spacing: -0.02em;
     }
 
-    .bar span {
-      display: block;
-      height: 100%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
-      width: var(--value, 60%);
+    h1 span {
+      background: linear-gradient(110deg, #0f8fff, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .demo-panel {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: none;
-      display: grid;
-      gap: 14px;
+    .hero-sub {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 30rem;
+      margin-bottom: 22px;
     }
 
-    .visual-stack {
-      display: grid;
-      gap: 14px;
-    }
-
-    .image-card {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background-size: cover;
-      background-position: center;
-      min-height: 240px;
-      box-shadow: none;
-    }
-
-    .image-card::after {
-      content: attr(data-label);
-      position: absolute;
-      left: 14px;
-      bottom: 14px;
-      padding: 8px 12px;
-      border-radius: 12px;
-      background: rgba(30,36,51,0.72);
-      color: #fff;
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.3px;
-    }
-
-    .inline-tags {
+    .hero-actions {
       display: flex;
-      gap: 8px;
       flex-wrap: wrap;
-    }
-
-    .ghost-btn {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 10px;
-      padding: 10px 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: border 0.2s ease, color 0.2s ease, transform 0.2s ease;
-    }
-
-    .ghost-btn:hover { border-color: rgba(255,180,95,0.7); color: var(--accent-warm); transform: translateY(-1px); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .founder-card {
-      background: linear-gradient(145deg, rgba(94,207,255,0.14), rgba(42,164,244,0.06));
-      border: 1px solid rgba(94,207,255,0.35);
-      border-radius: 16px;
-      padding: 18px;
-      display: grid;
       gap: 12px;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.32);
+      align-items: center;
+      margin-bottom: 6px;
     }
 
-    .avatar {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), rgba(94,207,255,0.6));
-      border: 2px solid rgba(255,255,255,0.25);
-      box-shadow: 0 10px 30px rgba(94,207,255,0.2);
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.2;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: #111118;
+      color: #f5f5f7;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
     }
 
-    .signature {
-      font-family: "Segoe Script", "Pacifico", cursive;
-      color: var(--accent);
-      font-size: 18px;
+    .btn-primary:hover {
+      opacity: 0.9;
     }
 
-    .personal-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 10px;
-      color: var(--text);
+    .hero-note {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
     }
 
-    .personal-list li {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-
-    .check {
-      color: var(--accent);
-      font-weight: 800;
-    }
-
-    .note-card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 16px;
-      display: grid;
-      gap: 10px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.28);
-    }
-
-    .process {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin-top: 10px;
-    }
-
-    .process-step {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 12px;
-      display: grid;
-      gap: 6px;
-    }
-
-    .process-step strong { color: var(--text); }
-    .process-step small { color: var(--muted); }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-    }
-
-    .gallery-card {
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: #ffffff;
-      box-shadow: none;
-      display: grid;
-    }
-
-    .gallery-card img {
+    .hero-visual {
+      position: relative;
       width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-      filter: saturate(1.02);
+      min-height: 240px;
+      border-radius: 26px;
+      background: radial-gradient(circle at 10% 0, #e0f0ff, #fdfdff);
+      padding: 18px 18px 18px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.04);
     }
 
-    .gallery-card div {
-      padding: 12px;
-      display: grid;
+    .hero-visual-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-visual-dots {
+      display: flex;
       gap: 4px;
     }
 
+    .hero-visual-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-visual-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .hero-card-large {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 14px 14px 12px;
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.14);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .hero-card-title {
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .hero-card-line {
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #0f8fff, #4f46e5);
+      margin-bottom: 6px;
+    }
+
+    .hero-card-line.muted {
+      background: rgba(0, 0, 0, 0.06);
+      width: 80%;
+    }
+
+    .hero-card-line.short {
+      width: 60%;
+    }
+
+    .hero-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .hero-card-tag {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #f5f5f7;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .hero-right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hero-mini {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 10px 10px 9px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.10);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-mini-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .hero-mini-title {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .hero-mini-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #0f8fff;
+    }
+
+    .hero-mini-lines {
+      margin-top: 4px;
+    }
+
+    .hero-mini-line {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.06);
+      margin-bottom: 4px;
+    }
+
+    .hero-mini-line.accent {
+      background: linear-gradient(90deg, #0f8fff, #4f46e5);
+      width: 70%;
+    }
+
+    .hero-mini-line.short {
+      width: 60%;
+    }
+
+    .hero-mini-line.tiny {
+      width: 40%;
+    }
+
+    /* SECTIONS */
+
+    .section {
+      margin-top: 60px;
+    }
+
+    .section-card {
+      background: var(--bg-soft);
+      border-radius: var(--radius-lg);
+      padding: 24px 22px 22px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.04);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
     .section-title {
-      font-size: 24px;
-      margin: 0 0 14px;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-heading {
+      font-size: 18px;
+      margin-top: 4px;
       letter-spacing: -0.01em;
     }
 
-    .contact {
+    .section-text {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 26rem;
+    }
+
+    .grid-3 {
       display: grid;
-      gap: 14px;
-      max-width: 520px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
     }
 
-    .contact input,
-    .contact textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
+    .tile {
+      background: #f7f7fb;
+      border-radius: 18px;
+      padding: 18px 16px 16px;
+      border: 1px solid var(--border-subtle);
+      font-size: 13px;
+      color: var(--muted);
+      min-height: 130px;
+    }
+
+    .tile-title {
       font-size: 14px;
-      outline: none;
-      transition: border 0.2s ease, box-shadow 0.2s ease;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--text);
     }
 
-    .contact input:focus,
-    .contact textarea:focus {
-      border-color: rgba(94,207,255,0.6);
-      box-shadow: 0 0 0 3px rgba(94,207,255,0.18);
+    .tile-tag {
+      display: inline-block;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4338ca;
+      font-size: 10px;
+      margin-bottom: 8px;
     }
+
+    /* CONTACT */
+
+    .contact-card {
+      margin-top: 32px;
+      padding: 24px 22px 20px;
+      border-radius: var(--radius-lg);
+      background: #111118;
+      color: #f5f5f7;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .contact-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .contact-text {
+      font-size: 13px;
+      color: #b3b3c0;
+      max-width: 26rem;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 260px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .field label {
+      font-size: 11px;
+      color: #d0d0dd;
+    }
+
+    .field input,
+    .field textarea {
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(5, 5, 10, 0.9);
+      color: #f5f5f7;
+      padding: 7px 9px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #777792;
+    }
+
+    .field textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .contact-submit {
+      align-self: flex-start;
+      margin-top: 4px;
+      border-radius: 999px;
+      border: none;
+      padding: 8px 14px;
+      background: #f5f5f7;
+      color: #111118;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .contact-submit:hover {
+      background: #e4e4ee;
+    }
+
+    .contact-note {
+      font-size: 11px;
+      color: #88889a;
+      margin-top: 4px;
+    }
+
+    .contact-note a {
+      color: #d0d0dd;
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
 
     footer {
-      padding: 28px 6vw 36px;
-      color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      background: rgba(13,17,23,0.9);
-    }
-
-    .footer-grid {
-      display: grid;
+      margin-top: 52px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      display: flex;
+      justify-content: space-between;
       gap: 10px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      font-size: 12px;
+      color: var(--muted);
+      flex-wrap: wrap;
     }
 
-    small { color: var(--muted); }
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
 
-    @media (max-width: 640px) {
-      header { gap: 10px; }
-      nav { display: none; }
-      .cta { width: 100%; }
-      header { position: sticky; }
+    footer a:hover {
+      color: var(--text);
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 34px 24px 30px;
+        gap: 28px;
+      }
+      .hero-visual {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding: 26px 16px 52px;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 14px;
+      }
+      .hero {
+        margin-top: 20px;
+        margin-bottom: 44px;
+      }
+      .section {
+        margin-top: 48px;
+      }
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .contact-card {
+        padding: 20px 16px 18px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <div class="logo-circle">C</div>
-      <span>Crownetic</span>
-    </div>
-    <nav aria-label="Primary">
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="cta" id="cta-button">Start a project</button>
-  </header>
-
   <main>
-    <section class="hero" id="demo">
+    <header>
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <img src="assets/logo.png" alt="Crownetic logo" />
+        </div>
+        <div>
+          <div class="brand-text-main">crownetic</div>
+          <div class="brand-text-sub">Minimal websites, tools & AI-flows</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#contact" class="nav-cta">Bespreek je uitdaging</a>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Crownetic hero">
       <div>
-        <div class="badge">Rustig, visueel, op maat</div>
-        <h1><span class="underline">Kalme, duidelijke ervaringen</span> die je meteen ziet.</h1>
-        <p class="lead">
-          Geen drukte of lange decks. Rustige visuals, snelle previews, direct contact met Tim.
+        <div class="pill">
+          <span class="pill-dot"></span>
+          Interfaces die tijd besparen en werk lichter maken
+        </div>
+
+        <h1>
+          Rustige <span>websites en tools</span><br />
+          rond één probleem: jouw werk makkelijker maken.
+        </h1>
+
+        <p class="hero-sub">
+          Crownetic helpt met minimal interfaces voor websites, interne tools en AI-flows.
+          Minder klikken, minder ruis – meer duidelijkheid in het werk van elke dag.
         </p>
-        <div style="margin: 14px 0; display: flex; gap: 10px; flex-wrap: wrap;">
-          <div class="pill">2–4 weken live</div>
-          <div class="pill">Direct contact</div>
+
+        <div class="hero-actions">
+          <a class="btn-primary" href="#contact">
+            Vertel over je probleem
+          </a>
         </div>
-        <div style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap;">
-          <button class="cta" id="cta-button-hero">Start een project</button>
-          <button class="ghost-btn" id="jump-demo">Bekijk voorbeelden</button>
+
+        <div class="hero-note">
+          3–5 zinnen over je situatie zijn genoeg. Je krijgt een eerlijke reactie
+          of een voorstel hoe we het kunnen oplossen.
         </div>
       </div>
-      <div class="demo-panel" aria-label="Live preview">
-        <div class="visual-stack">
-          <div class="image-card" data-label="Voorbeeld" style="background-image:url('https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?auto=format&fit=crop&w=1200&q=80');"></div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-visual-header">
+          <div class="hero-visual-dots">
+            <div class="hero-visual-dot"></div>
+            <div class="hero-visual-dot"></div>
+            <div class="hero-visual-dot"></div>
+          </div>
+          <div>Preview: drie soorten interfaces</div>
+        </div>
+
+        <div class="hero-visual-main">
+          <div class="hero-card-large">
+            <div class="hero-card-title">Website layout</div>
+            <div class="hero-card-line"></div>
+            <div class="hero-card-line muted"></div>
+            <div class="hero-card-line muted short"></div>
+            <div class="hero-card-tags">
+              <div class="hero-card-tag">Landing pages</div>
+              <div class="hero-card-tag">Product uitleg</div>
+              <div class="hero-card-tag">Minimal UI</div>
+            </div>
+          </div>
+
+          <div class="hero-right-column">
+            <div class="hero-mini">
+              <div class="hero-mini-header">
+                <div class="hero-mini-title">Interne tool</div>
+                <div class="hero-mini-dot"></div>
+              </div>
+              <div class="hero-mini-lines">
+                <div class="hero-mini-line accent"></div>
+                <div class="hero-mini-line"></div>
+                <div class="hero-mini-line short"></div>
+              </div>
+              <div style="margin-top:6px;">
+                Taken bundelen in één scherm in plaats van vijf verschillende tools.
+              </div>
+            </div>
+
+            <div class="hero-mini">
+              <div class="hero-mini-header">
+                <div class="hero-mini-title">AI-flow</div>
+                <div class="hero-mini-dot"></div>
+              </div>
+              <div class="hero-mini-lines">
+                <div class="hero-mini-line accent"></div>
+                <div class="hero-mini-line tiny"></div>
+              </div>
+              <div style="margin-top:6px;">
+                Kleine AI-stappen die repetitief werk overnemen en je team tijd teruggeven.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Sections removed per request: About, Workflow, Gallery, Services, Approach -->
+    <section id="how" class="section" aria-label="Aanpak">
+      <div class="section-card">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Aanpak</div>
+            <h2 class="section-heading">Eerst het probleem, dan de interface</h2>
+          </div>
+          <p class="section-text">
+            We beginnen niet met pixels, maar met de vraag: welk stuk werk moet lichter?
+            Daarna kiezen we of een website, tool of AI-flow het beste antwoord is.
+          </p>
+        </div>
 
-    <section id="contact">
-      <h2 class="section-title">Tell Tim about your project</h2>
-      <p class="lead">Drop a quick note—I'll reply the same day with next steps and a timeline.</p>
-      <form class="contact" onsubmit="handleSubmit(event)">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="email" name="email" placeholder="Work email" required>
-        <textarea name="details" rows="4" placeholder="What are you building?" required></textarea>
-        <button class="cta" type="submit">Send message</button>
-        <small id="form-status" aria-live="polite"></small>
-      </form>
+        <div class="grid-3">
+          <div class="tile">
+            <div class="tile-tag">Stap 1</div>
+            <div class="tile-title">Uitdaging scherp krijgen</div>
+            <p>
+              In een korte call brengen we je proces in kaart. Waar gaat tijd verloren?
+              Waar raakt je team gefrustreerd?
+            </p>
+          </div>
+          <div class="tile">
+            <div class="tile-tag">Stap 2</div>
+            <div class="tile-title">Concept & interface</div>
+            <p>
+              We vertalen de uitdaging naar een minimal interface: website, interne tool
+              of AI-flow met zo min mogelijk ruis.
+            </p>
+          </div>
+          <div class="tile">
+            <div class="tile-tag">Stap 3</div>
+            <div class="tile-title">Bouw & iteratie</div>
+            <p>
+              De gekozen oplossing wordt gebouwd, getest en aangepast op basis van gebruik.
+              Zodat het ook in de praktijk fijn werkt.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-card" id="contact">
+          <div>
+            <div class="contact-title">Heb je een proces dat slimmer kan?</div>
+            <div class="contact-text">
+              Denk aan offertes maken, intakevragen, interne afstemming of terugkerende klantvragen.
+              Vaak is één gerichte interface al genoeg om veel tijd terug te winnen.
+            </div>
+          </div>
+
+          <div class="contact-actions">
+            <form
+              class="contact-form"
+              action="https://formsubmit.co/crownetic@hotmail.com"
+              method="POST"
+            >
+              <!-- Hidden fields for FormSubmit -->
+              <input type="hidden" name="_subject" value="Nieuwe uitdaging via crownetic.com">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://crownetic.com/">
+
+              <div class="field">
+                <label for="name">Naam</label>
+                <input id="name" name="Naam" type="text" placeholder="Je naam" required />
+              </div>
+              <div class="field">
+                <label for="email">E-mailadres</label>
+                <input id="email" name="E-mail" type="email" placeholder="jij@bedrijf.nl" required />
+              </div>
+              <div class="field">
+                <label for="company">Bedrijf (optioneel)</label>
+                <input id="company" name="Bedrijf" type="text" placeholder="Bedrijfsnaam" />
+              </div>
+              <div class="field">
+                <label for="challenge">Wat is je uitdaging?</label>
+                <textarea
+                  id="challenge"
+                  name="Uitdaging"
+                  placeholder="Welke taak of welk proces kost nu te veel tijd?"
+                ></textarea>
+              </div>
+              <button type="submit" class="contact-submit">Verstuur je uitdaging</button>
+            </form>
+            <div class="contact-note">
+              Je bericht wordt veilig verstuurd via FormSubmit naar
+              <strong>crownetic@hotmail.com</strong>.  
+              Werkt het niet? Mail dan direct naar
+              <a href="mailto:crownetic@hotmail.com">crownetic@hotmail.com</a>.
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <footer>
+      <div>© <span id="year"></span> Crownetic. Minimal websites, tools & AI-flows.</div>
+      <div>
+        Contact: <a href="mailto:crownetic@hotmail.com">crownetic@hotmail.com</a>
+      </div>
+    </footer>
   </main>
 
-  <footer style="color:#ffffff;">
-    <div class="footer-grid">
-      <div>
-        <div class="logo" style="margin-bottom: 6px;">
-          <div class="logo-circle">C</div>
-          <span>Crownetic</span>
-        </div>
-        <small>Websites and digital tools built for growing companies.</small>
-      </div>
-      <div>
-        <small><strong>Contact</strong><br>hello@crownetic.com<br>+31 6 1234 5678</small>
-      </div>
-      <div>
-        <small><strong>Availability</strong><br>New projects open — book a kickoff call.</small>
-      </div>
-    </div>
-  </footer>
-
   <script>
-    function handleSubmit(event) {
-      event.preventDefault();
-      const status = document.getElementById("form-status");
-      status.textContent = "Thanks! We received your note and will reply shortly.";
-      status.style.color = "var(--accent)";
-      event.target.reset();
-      // Placeholder submit handler; wire this up to your backend or form tool when ready.
-    }
-
-    const contactSection = document.getElementById("contact");
-    ["cta-button", "cta-button-hero"].forEach((id) => {
-      const btn = document.getElementById(id);
-      if (btn) {
-        btn.addEventListener("click", () => contactSection.scrollIntoView({ behavior: "smooth" }));
-      }
-    });
-
-    const jumpDemo = document.getElementById("jump-demo");
-    if (jumpDemo) {
-      jumpDemo.addEventListener("click", () => {
-        document.getElementById("demo").scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    }
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
