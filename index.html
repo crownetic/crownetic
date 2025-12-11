@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crownetic — Websites & Tools for Growing Companies</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1e2433;
+      --muted: #5d6678;
+      --accent: #2f7cf6;
+      --accent-strong: #1f6ae0;
+      --accent-warm: #f2c38f;
+      --accent-pink: #f7a6d9;
+      --border: #e4e7ee;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 6vw;
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      background: rgba(47,124,246,0.08);
+    }
+
+    .cta {
+      padding: 10px 16px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      box-shadow: none;
+    }
+
+    .cta:hover { transform: translateY(-1px); }
+    .cta:active { transform: translateY(0); }
+
+    main {
+      flex: 1;
+      padding: 70px 6vw 100px;
+      display: grid;
+      gap: 110px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 48px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(47,124,246,0.08);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 8px 0 12px;
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.6;
+      margin: 0 0 14px;
+    }
+
+    .hand-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(47,124,246,0.08);
+      border: 1px solid rgba(47,124,246,0.16);
+      color: var(--text);
+      font-weight: 600;
+      box-shadow: none;
+    }
+
+    .underline {
+      display: inline-block;
+      position: relative;
+    }
+
+    .underline::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, rgba(47,124,246,0.35), rgba(242,195,143,0.35));
+      opacity: 0.7;
+      filter: blur(4px);
+      z-index: -1;
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+      margin: 16px 0 12px;
+    }
+
+    .kpi-row { display: none; }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+      box-shadow: none;
+    }
+
+    .hero-card strong { color: var(--text); }
+
+    .quote-card {
+      background: #f9fbff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: grid;
+      gap: 6px;
+      box-shadow: none;
+    }
+
+    .quote-card strong { font-size: 18px; }
+    .quote-card small { color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      margin: 8px 0 10px;
+      font-size: 18px;
+    }
+
+    .card p { color: var(--muted); line-height: 1.5; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(47,124,246,0.08);
+      font-size: 12px;
+      color: var(--text);
+      font-weight: 600;
+      margin-right: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0;
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+    }
+
+    .list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      box-shadow: 0 0 0 4px rgba(94,207,255,0.12);
+    }
+
+    .bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+      width: var(--value, 60%);
+    }
+
+    .demo-panel {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .visual-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .image-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background-size: cover;
+      background-position: center;
+      min-height: 240px;
+      box-shadow: none;
+    }
+
+    .image-card::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(30,36,51,0.72);
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+    }
+
+    .inline-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ghost-btn {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .ghost-btn:hover { border-color: rgba(255,180,95,0.7); color: var(--accent-warm); transform: translateY(-1px); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .founder-card {
+      background: linear-gradient(145deg, rgba(94,207,255,0.14), rgba(42,164,244,0.06));
+      border: 1px solid rgba(94,207,255,0.35);
+      border-radius: 16px;
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.32);
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), rgba(94,207,255,0.6));
+      border: 2px solid rgba(255,255,255,0.25);
+      box-shadow: 0 10px 30px rgba(94,207,255,0.2);
+    }
+
+    .signature {
+      font-family: "Segoe Script", "Pacifico", cursive;
+      color: var(--accent);
+      font-size: 18px;
+    }
+
+    .personal-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+      color: var(--text);
+    }
+
+    .personal-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .check {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .note-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.28);
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .process-step {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 12px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .process-step strong { color: var(--text); }
+    .process-step small { color: var(--muted); }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .gallery-card {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      box-shadow: none;
+      display: grid;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.02);
+    }
+
+    .gallery-card div {
+      padding: 12px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin: 0 0 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .contact {
+      display: grid;
+      gap: 14px;
+      max-width: 520px;
+    }
+
+    .contact input,
+    .contact textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact input:focus,
+    .contact textarea:focus {
+      border-color: rgba(94,207,255,0.6);
+      box-shadow: 0 0 0 3px rgba(94,207,255,0.18);
+    }
+
+    footer {
+      padding: 28px 6vw 36px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(13,17,23,0.9);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    small { color: var(--muted); }
+
+    @media (max-width: 640px) {
+      header { gap: 10px; }
+      nav { display: none; }
+      .cta { width: 100%; }
+      header { position: sticky; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="logo-circle">C</div>
+      <span>Crownetic</span>
+    </div>
+    <nav aria-label="Primary">
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="cta" id="cta-button">Start a project</button>
+  </header>
+
+  <main>
+    <section class="hero" id="demo">
+      <div>
+        <div class="badge">Rustig, visueel, op maat</div>
+        <h1><span class="underline">Kalme, duidelijke ervaringen</span> die je meteen ziet.</h1>
+        <p class="lead">
+          Geen drukte of lange decks. Rustige visuals, snelle previews, direct contact met Tim.
+        </p>
+        <div style="margin: 14px 0; display: flex; gap: 10px; flex-wrap: wrap;">
+          <div class="pill">2–4 weken live</div>
+          <div class="pill">Direct contact</div>
+        </div>
+        <div style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <button class="cta" id="cta-button-hero">Start een project</button>
+          <button class="ghost-btn" id="jump-demo">Bekijk voorbeelden</button>
+        </div>
+      </div>
+      <div class="demo-panel" aria-label="Live preview">
+        <div class="visual-stack">
+          <div class="image-card" data-label="Voorbeeld" style="background-image:url('https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?auto=format&fit=crop&w=1200&q=80');"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sections removed per request: About, Workflow, Gallery, Services, Approach -->
+
+    <section id="contact">
+      <h2 class="section-title">Tell Tim about your project</h2>
+      <p class="lead">Drop a quick note—I'll reply the same day with next steps and a timeline.</p>
+      <form class="contact" onsubmit="handleSubmit(event)">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Work email" required>
+        <textarea name="details" rows="4" placeholder="What are you building?" required></textarea>
+        <button class="cta" type="submit">Send message</button>
+        <small id="form-status" aria-live="polite"></small>
+      </form>
+    </section>
+  </main>
+
+  <footer style="color:#ffffff;">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom: 6px;">
+          <div class="logo-circle">C</div>
+          <span>Crownetic</span>
+        </div>
+        <small>Websites and digital tools built for growing companies.</small>
+      </div>
+      <div>
+        <small><strong>Contact</strong><br>hello@crownetic.com<br>+31 6 1234 5678</small>
+      </div>
+      <div>
+        <small><strong>Availability</strong><br>New projects open — book a kickoff call.</small>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const status = document.getElementById("form-status");
+      status.textContent = "Thanks! We received your note and will reply shortly.";
+      status.style.color = "var(--accent)";
+      event.target.reset();
+      // Placeholder submit handler; wire this up to your backend or form tool when ready.
+    }
+
+    const contactSection = document.getElementById("contact");
+    ["cta-button", "cta-button-hero"].forEach((id) => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        btn.addEventListener("click", () => contactSection.scrollIntoView({ behavior: "smooth" }));
+      }
+    });
+
+    const jumpDemo = document.getElementById("jump-demo");
+    if (jumpDemo) {
+      jumpDemo.addEventListener("click", () => {
+        document.getElementById("demo").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  </script>
+</body>
+</html>
+
