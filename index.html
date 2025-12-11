@@ -4,25 +4,82 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Crownetic – Minimal websites & tools die werk lichter maken</title>
+  <title>Crownetic – Freelance websites, interne tools & AI-flows voor minder gedoe</title>
 
-  <meta name="description" content="Crownetic maakt minimal websites, interne tools en AI-flows die processen versimpelen en tijd besparen voor bureaus en mkb." />
+  <meta name="description" content="Crownetic is een freelance designer & developer die minimal websites, interne tools en AI-flows maakt voor bureaus en mkb. Minder tools, minder gedoe en meer tijd voor echt werk." />
   <link rel="canonical" href="https://crownetic.com/" />
+  <meta name="robots" content="index,follow" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Crownetic – Minimal websites & tools die werk lichter maken" />
+  <meta property="og:title" content="Crownetic – Freelance websites, interne tools & AI-flows" />
   <meta property="og:description" content="Minimal, rustige interfaces voor websites, interne tools en AI-flows. Gericht op tijd besparen en werk makkelijker maken." />
   <meta property="og:url" content="https://crownetic.com/" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://crownetic.com/assets/logo.png" />
 
-  <!-- Structured data -->
+  <!-- Structured data: Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Crownetic",
     "url": "https://crownetic.com/",
-    "email": "mailto:crownetic@hotmail.com"
+    "email": "mailto:crownetic@hotmail.com",
+    "sameAs": [
+      "https://github.com/crownetic"
+    ]
+  }
+  </script>
+
+  <!-- Structured data: Website -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Crownetic",
+    "url": "https://crownetic.com/"
+  }
+  </script>
+
+  <!-- Structured data: FAQ for AI/SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat doet Crownetic precies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Crownetic ontwerpt en bouwt minimal websites, interne tools en AI-flows die processen versimpelen en tijd besparen voor bureaus en mkb."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Voor wie is Crownetic bedoeld?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Crownetic werkt vooral voor bureaus en mkb-bedrijven die hun website willen verbeteren of interne werkprocessen slimmer willen maken met maatwerk tools of AI-flows."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welke problemen lost Crownetic op?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Crownetic helpt bij zaken als rommelige offerte- en intakeflows, verspreide informatie over meerdere tools en repetitief werk dat grotendeels geautomatiseerd kan worden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe werkt samenwerken met Crownetic?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Na een korte intake worden het proces en de doelen scherp gemaakt. Daarna volgt een voorstel voor een minimal website, interne tool of AI-flow, inclusief bouw en iteratie."
+        }
+      }
+    ]
   }
   </script>
 
@@ -232,7 +289,24 @@
       font-size: 14px;
       color: var(--muted);
       max-width: 30rem;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
+    }
+
+    .hero-outcomes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 6px 0 16px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-outcome-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #f5f5f7;
+      border: 1px solid var(--border-subtle);
+      white-space: nowrap;
     }
 
     .hero-usecases {
@@ -539,6 +613,53 @@
       margin-bottom: 4px;
     }
 
+    /* HOW IT WORKS */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 8px;
+    }
+
+    .step {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .step-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    /* FAQ */
+
+    .faq-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 13px;
+      color: var(--muted);
+      display: grid;
+      gap: 12px;
+    }
+
+    .faq-item-question {
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
     /* CONTACT */
 
     .contact-card {
@@ -677,6 +798,9 @@
       .hero-visual {
         order: -1;
       }
+      .steps {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 720px) {
@@ -720,27 +844,35 @@
       <nav>
         <a href="#work">Recent werk</a>
         <a href="#services">Waarmee</a>
+        <a href="#how">Hoe ik werk</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact" class="nav-cta">Deel je uitdaging</a>
       </nav>
     </header>
 
     <section class="hero" aria-label="Crownetic hero">
       <div>
-        <div class="hero-meta">Freelance design & development</div>
+        <div class="hero-meta">Freelance designer & developer voor bureaus en mkb</div>
         <div class="pill">
           <span class="pill-dot"></span>
           Interfaces die tijd besparen en rust geven
         </div>
 
         <h1>
-          Minimal <span>websites, tools en AI-flows</span><br />
+          Minimal <span>websites, interne tools en AI-flows</span><br />
           rond één ding: minder gedoe in je werk.
         </h1>
 
         <p class="hero-sub">
-          Ik help bureaus en mkb met rustige interfaces die bestaande processen
-          simpeler maken in plaats van nóg een tool erbij te zetten.
+          Crownetic helpt je als freelance front-end developer en designer om processen simpeler te maken:
+          van marketingwebsite tot interne tool en kleine AI-flows eromheen.
         </p>
+
+        <div class="hero-outcomes">
+          <div class="hero-outcome-pill">Minder e-mail heen en weer</div>
+          <div class="hero-outcome-pill">Minder losse tools</div>
+          <div class="hero-outcome-pill">Meer overzicht per scherm</div>
+        </div>
 
         <ul class="hero-usecases">
           <li>Offertes en intakes in één duidelijke flow</li>
@@ -750,7 +882,7 @@
 
         <div class="hero-actions">
           <a class="btn-primary" href="#contact">
-            Deel je uitdaging
+            Deel je uitdaging (reactie binnen 1 werkdag)
           </a>
         </div>
 
@@ -855,12 +987,12 @@
           <div>
             <div class="section-title">Waarmee</div>
             <h2 class="section-heading">
-              Eén iemand die meedenkt en het ook bouwt
+              Eén freelance partner voor website, tool én AI-flow
             </h2>
           </div>
           <p class="section-text">
             Geen generieke tool, maar een gerichte interface rond jouw proces:
-            site, interne tool of AI-flow.
+            website, interne tool of AI-flow – of een combinatie daarvan.
           </p>
         </div>
 
@@ -878,7 +1010,7 @@
             <div class="tile-title">Één scherm voor je proces</div>
             <ul class="tile-list">
               <li>Offerte-, intake- of statusflows op maat</li>
-              <li>Sluit aan op hoe je team al werkt</li>
+              <li>Sluit aan op hoe je team nu al werkt</li>
             </ul>
           </div>
           <div class="tile">
@@ -946,6 +1078,99 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="section" aria-label="Hoe ik werk">
+      <div class="section-card">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Aanpak</div>
+            <h2 class="section-heading">
+              In drie stappen van gedoe naar een rustige interface
+            </h2>
+          </div>
+          <p class="section-text">
+            Geen groot traject met vijftien sessies, maar een simpele lijn:
+            probleem scherp krijgen, interface kiezen, bouwen en bijschaven.
+          </p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-label">Stap 1</div>
+            <div class="step-title">Probleem scherp</div>
+            <p>
+              In een korte call bekijken we waar tijd weglekt: in offertes,
+              intakes, interne afstemming of iets anders.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-label">Stap 2</div>
+            <div class="step-title">Concept & interface</div>
+            <p>
+              We kiezen de slimste vorm: website, interne tool, AI-flow
+              of een combinatie. Altijd minimal en zonder extra ruis.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-label">Stap 3</div>
+            <div class="step-title">Bouw & iteratie</div>
+            <p>
+              Ik bouw, we testen met echte gebruikers en scherpen bij.
+              Zodat het in de praktijk echt tijd oplevert.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (voor mensen én AI) -->
+    <section id="faq" class="section" aria-label="Veelgestelde vragen over Crownetic">
+      <div class="section-card">
+        <div class="section-header">
+          <div>
+            <div class="section-title">FAQ</div>
+            <h2 class="section-heading">
+              Veelgestelde vragen over Crownetic
+            </h2>
+          </div>
+          <p class="section-text">
+            Korte antwoorden die je ook terug kunt zien in AI-zoekresultaten.
+          </p>
+        </div>
+
+        <ul class="faq-list">
+          <li>
+            <div class="faq-item-question">Wat doet Crownetic precies?</div>
+            <div>
+              Crownetic ontwerpt en bouwt minimal websites, interne tools en AI-flows
+              die processen versimpelen en tijd besparen.
+            </div>
+          </li>
+          <li>
+            <div class="faq-item-question">Voor welk type bedrijven werk je?</div>
+            <div>
+              Vooral voor bureaus en mkb-bedrijven die hun site willen verbeteren
+              of interne werkprocessen slimmer willen maken.
+            </div>
+          </li>
+          <li>
+            <div class="faq-item-question">Hoe start een samenwerking?</div>
+            <div>
+              Je deelt je uitdaging via het formulier of per mail. Daarna volgt een korte
+              intake en een voorstel met aanpak en globale planning.
+            </div>
+          </li>
+          <li>
+            <div class="faq-item-question">Doe je ook alleen front-end werk?</div>
+            <div>
+              Ja. Ik kan als freelance front-end developer aansluiten bij een bestaand team
+              of design omzetten in een moderne, minimal interface.
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
 
