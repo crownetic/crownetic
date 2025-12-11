@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Crownetic – Minimal websites, interne tools & AI-flows voor mkb</title>
+  <title>Crownetic – Simple web apps & tools that save time</title>
 
-  <meta name="description" content="Crownetic is freelance designer & front-end developer voor minimal websites, interne tools en AI-flows die processen versimpelen en tijd besparen." />
+  <meta name="description" content="Crownetic is a solo app & interface maker. I design and build small web apps, internal tools and AI-powered flows that turn messy work and data into clear, visual workflows." />
   <link rel="canonical" href="https://crownetic.com/" />
   <meta name="robots" content="index,follow" />
 
-  <!-- Favicon & icons (nu in root, niet in /assets) -->
+  <!-- Favicon & icons (in root) -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Crownetic – Minimal websites, interne tools & AI-flows voor mkb" />
-  <meta property="og:description" content="Freelance designer & front-end developer voor minimal websites, interne tools en AI-flows die werk lichter maken." />
+  <meta property="og:title" content="Crownetic – Simple web apps & tools that save time" />
+  <meta property="og:description" content="Solo app & interface maker for small teams and companies. I build simple tools, internal apps and AI-flows that turn messy work into clear, visual workflows." />
   <meta property="og:url" content="https://crownetic.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://crownetic.com/assets/logo.png" />
 
   <!-- Twitter / X cards -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Crownetic – Minimal websites, interne tools & AI-flows" />
-  <meta name="twitter:description" content="Minimal websites, interne tools en AI-flows die processen versimpelen en tijd besparen." />
+  <meta name="twitter:title" content="Crownetic – Simple web apps & tools that save time" />
+  <meta name="twitter:description" content="Simple web apps, internal tools and AI-flows that make work lighter and data easier to understand." />
   <meta name="twitter:image" content="https://crownetic.com/assets/logo.png" />
 
   <!-- Structured data: Organization -->
@@ -52,7 +52,7 @@
   }
   </script>
 
-  <!-- Structured data: FAQ for AI/SEO -->
+  <!-- Structured data: FAQ (English, AI-friendly) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -60,41 +60,41 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Wat doet Crownetic precies?",
+        "name": "What does Crownetic do?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Crownetic ontwerpt en bouwt minimal websites, interne tools en AI-flows die processen versimpelen en tijd besparen."
+          "text": "Crownetic designs and builds small web applications, internal tools and AI-powered flows that turn messy processes and data into clear, visual workflows."
         }
       },
       {
         "@type": "Question",
-        "name": "Voor wie is Crownetic bedoeld?",
+        "name": "Who is Crownetic for?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Crownetic werkt vooral voor bureaus en mkb-bedrijven die hun website willen verbeteren of interne werkprocessen slimmer willen maken met maatwerk tools of AI-flows."
+          "text": "Crownetic works with teams and companies that want to save time, reduce repetitive work and make their data easier to use, in the Netherlands and internationally."
         }
       },
       {
         "@type": "Question",
-        "name": "Welke problemen lost Crownetic op?",
+        "name": "What kind of problems does Crownetic like to solve?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Crownetic helpt bij zaken als rommelige offerte- en intakeflows, verspreide informatie over meerdere tools en repetitief werk dat grotendeels geautomatiseerd kan worden."
+          "text": "Typical problems include turning long forms into clear offers, turning raw data into understandable dashboards, and creating small AI-powered tools that do the boring prep work."
         }
       },
       {
         "@type": "Question",
-        "name": "Hoe werkt samenwerken met Crownetic?",
+        "name": "How do we start working together?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Na een korte intake worden het proces en de doelen scherp gemaakt. Daarna volgt een voorstel voor een minimal website, interne tool of AI-flow, inclusief bouw en iteratie."
+          "text": "You describe your challenge via the contact form, e-mail or WhatsApp. Based on that you receive a first idea of the direction and, if it makes sense, a proposal for a small, focused project."
         }
       }
     ]
   }
   </script>
 
-  <!-- Google Analytics 4 – vervang G-XXXXXXX door je eigen ID als je GA wilt gebruiken -->
+  <!-- Google Analytics 4 – optional, replace G-XXXXXXX with your ID if you use GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -110,7 +110,7 @@
       --accent: #0f8fff;
       --accent-soft: #e6f2ff;
       --text: #111118;
-      --muted: #4b5563; /* donkerder voor beter contrast */
+      --muted: #4b5563;
       --border-subtle: rgba(0, 0, 0, 0.06);
       --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.10);
       --radius-xl: 32px;
@@ -154,6 +154,16 @@
     textarea:focus-visible {
       outline: 2px solid var(--accent);
     }
+
+    /* Language handling */
+    .lang { /* base */ }
+    .lang-nl { display: none; }
+
+    html[data-lang="nl"] .lang-en { display: none; }
+    html[data-lang="nl"] .lang-nl { display: inline; }
+
+    html[data-lang="en"] .lang-en { display: inline; }
+    html[data-lang="en"] .lang-nl { display: none; }
 
     /* HEADER */
 
@@ -201,6 +211,14 @@
       color: var(--muted);
     }
 
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
     nav {
       display: flex;
       align-items: center;
@@ -246,6 +264,32 @@
       opacity: 0.95;
       transform: translateY(-1px);
       box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 2px;
+      border-radius: 999px;
+      background: #e5e7eb;
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      cursor: pointer;
+      color: #4b5563;
+      min-height: 28px;
+    }
+
+    html[data-lang="en"] .lang-btn[data-lang-switch="en"],
+    html[data-lang="nl"] .lang-btn[data-lang-switch="nl"] {
+      background: #111118;
+      color: #f5f5f7;
     }
 
     /* HERO */
@@ -308,7 +352,7 @@
     .hero-sub {
       font-size: 14px;
       color: var(--muted);
-      max-width: 30rem;
+      max-width: 32rem;
       margin-bottom: 10px;
     }
 
@@ -364,6 +408,7 @@
       text-decoration: none;
       cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+      min-height: 44px;
     }
 
     .btn-primary:hover {
@@ -595,7 +640,7 @@
       box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
     }
 
-    /* SERVICES / CASE / ABOUT / HOW */
+    /* GRID / STEPS */
 
     .grid-3 {
       display: grid;
@@ -708,7 +753,7 @@
 
     .contact-text {
       font-size: 13px;
-      color: #e5e7eb; /* betere contrast op donker */
+      color: #e5e7eb;
       max-width: 27rem;
     }
 
@@ -776,6 +821,7 @@
       font-weight: 500;
       cursor: pointer;
       transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+      min-height: 44px;
     }
 
     .contact-submit:hover {
@@ -802,6 +848,16 @@
       height: 1px;
       opacity: 0;
       pointer-events: none;
+    }
+
+    .contact-links {
+      margin-top: 6px;
+      font-size: 12px;
+    }
+
+    .contact-links a {
+      color: #e5e7eb;
+      text-decoration: underline;
     }
 
     /* FOOTER */
@@ -890,6 +946,10 @@
         flex-direction: column;
         align-items: flex-start;
       }
+      .header-right {
+        width: 100%;
+        justify-content: space-between;
+      }
     }
 
     @media (max-width: 560px) {
@@ -955,60 +1015,110 @@
         </div>
         <div>
           <div class="brand-text-main">crownetic</div>
-          <div class="brand-text-sub">Minimal websites, tools & AI-flows</div>
+          <div class="brand-text-sub">
+            <span class="lang lang-en">Simple apps & tools that save time</span>
+            <span class="lang lang-nl">Eenvoudige apps & tools die tijd besparen</span>
+          </div>
         </div>
       </div>
 
-      <nav aria-label="Hoofdnavigatie">
-        <a href="#work">Recent werk</a>
-        <a href="#services">Waarmee</a>
-        <a href="#case">Case</a>
-        <a href="#about">Over</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact" class="nav-cta">Deel je uitdaging</a>
-      </nav>
+      <div class="header-right">
+        <nav aria-label="Main navigation">
+          <a href="#work"><span class="lang lang-en">Work</span><span class="lang lang-nl">Werk</span></a>
+          <a href="#services"><span class="lang lang-en">What I build</span><span class="lang lang-nl">Wat ik bouw</span></a>
+          <a href="#case"><span class="lang lang-en">Example</span><span class="lang lang-nl">Voorbeeld</span></a>
+          <a href="#about"><span class="lang lang-en">About</span><span class="lang lang-nl">Over</span></a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact" class="nav-cta">
+            <span class="lang lang-en">Share your problem</span>
+            <span class="lang lang-nl">Deel je uitdaging</span>
+          </a>
+        </nav>
+
+        <div class="lang-switch" aria-label="Language switcher">
+          <button type="button" class="lang-btn" data-lang-switch="en">EN</button>
+          <button type="button" class="lang-btn" data-lang-switch="nl">NL</button>
+        </div>
+      </div>
     </header>
 
     <section class="hero" aria-label="Crownetic hero">
       <div>
-        <div class="hero-meta">Freelance designer & front-end developer voor bureaus en mkb</div>
+        <div class="hero-meta">
+          <span class="lang lang-en">Solo app & interface maker for teams and small companies</span>
+          <span class="lang lang-nl">Zelfstandige applicatie maker voor teams en mkb</span>
+        </div>
         <div class="pill">
           <span class="pill-dot"></span>
-          Interfaces die tijd besparen en rust geven
+          <span class="lang lang-en">Small tools, big impact on daily work</span>
+          <span class="lang lang-nl">Kleine tools, groot effect op je werkdag</span>
         </div>
 
         <h1>
-          Minimal <span>websites, interne tools en AI-flows</span><br />
-          rond één ding: minder gedoe in je werk.
+          <span class="lang lang-en">
+            Simple web apps and tools<br />
+            that turn messy work into clear flows.
+          </span>
+          <span class="lang lang-nl">
+            Eenvoudige webapps en tools<br />
+            die rommelig werk omzetten in heldere flows.
+          </span>
         </h1>
 
         <p class="hero-sub">
-          Crownetic helpt je processen simpeler te maken: van marketingwebsite tot interne tool
-          en kleine AI-flows eromheen. Eén persoon, korte lijnen, rustige interfaces.
-          <a href="#contact">Plan de eerste stap</a>.
+          <span class="lang lang-en">
+            I design and build small web apps, internal tools and interactive dashboards that
+            save time and make data easier to understand. Not “another big platform”, but
+            focused tools around one concrete problem.
+          </span>
+          <span class="lang lang-nl">
+            Ik ontwerp en bouw kleine webapps, interne tools en interactieve dashboards die
+            tijd besparen en data begrijpelijk maken. Geen “groot platform”, maar gerichte tools
+            rond één concreet probleem.
+          </span>
         </p>
 
         <div class="hero-outcomes">
-          <div class="hero-outcome-pill">Minder e-mail heen en weer</div>
-          <div class="hero-outcome-pill">Minder losse tools</div>
-          <div class="hero-outcome-pill">Meer overzicht per scherm</div>
+          <div class="hero-outcome-pill">
+            <span class="lang lang-en">Less manual work</span>
+            <span class="lang lang-nl">Minder handmatig werk</span>
+          </div>
+          <div class="hero-outcome-pill">
+            <span class="lang lang-en">Clearer data & decisions</span>
+            <span class="lang lang-nl">Duidelijkere data & beslissingen</span>
+          </div>
+          <div class="hero-outcome-pill">
+            <span class="lang lang-en">One place instead of five tools</span>
+            <span class="lang lang-nl">Eén plek in plaats van vijf tools</span>
+          </div>
         </div>
 
         <ul class="hero-usecases">
-          <li>Offertes en intakes in één duidelijke flow</li>
-          <li>Interne taken bundelen in één tool</li>
-          <li>Kleine AI-stappen die repetitief werk overnemen</li>
+          <li class="lang lang-en">Turn form inputs into ready-to-send quotes.</li>
+          <li class="lang lang-en">Turn raw data into visual, easy-to-scan dashboards.</li>
+          <li class="lang lang-en">Let people “talk” to your website content and see the data behind it.</li>
+
+          <li class="lang lang-nl">Formulier-invoer omzetten naar kant-en-klare offertes.</li>
+          <li class="lang lang-nl">Ruwe data omzetten naar visuele, snel scanbare dashboards.</li>
+          <li class="lang lang-nl">Gebruikers laten “praten” met je website en de data erachter.</li>
         </ul>
 
         <div class="hero-actions">
           <a class="btn-primary" href="#contact">
-            Deel je uitdaging (reactie binnen 1 werkdag)
+            <span class="lang lang-en">Tell me about your problem</span>
+            <span class="lang lang-nl">Vertel kort over je probleem</span>
           </a>
         </div>
 
         <div class="hero-note">
-          Schrijf kort wat je doet en waar het nu vastloopt.
-          Je krijgt een eerlijke reactie of een concreet voorstel.
+          <span class="lang lang-en">
+            A few sentences about what you do and where time is lost is enough. I reply with
+            an honest view and, if it makes sense, a proposal for a small tool.
+          </span>
+          <span class="lang lang-nl">
+            Een paar zinnen over wat je doet en waar tijd weglekt zijn genoeg. Je krijgt een
+            eerlijke reactie en – als het logisch is – een voorstel voor een kleine tool.
+          </span>
         </div>
       </div>
 
@@ -1019,28 +1129,35 @@
             <div class="hero-visual-dot"></div>
             <div class="hero-visual-dot"></div>
           </div>
-          <div>Preview: drie soorten interfaces</div>
+          <div class="lang lang-en">Preview: three kinds of interfaces</div>
+          <div class="lang lang-nl">Preview: drie soorten interfaces</div>
         </div>
 
         <div class="hero-visual-main">
-          <!-- Voorbeeld 1: website lay-out -->
+          <!-- Example 1: data dashboard -->
           <div class="hero-card-large">
-            <div class="hero-card-title">Website lay-out</div>
+            <div class="hero-card-title">
+              <span class="lang lang-en">Interactive data view</span>
+              <span class="lang lang-nl">Interactieve dataview</span>
+            </div>
             <div class="hero-card-line"></div>
             <div class="hero-card-line muted"></div>
             <div class="hero-card-line muted short"></div>
             <div class="hero-card-tags">
-              <div class="hero-card-tag">Landing</div>
-              <div class="hero-card-tag">Product</div>
-              <div class="hero-card-tag">Minimal UI</div>
+              <div class="hero-card-tag">Charts</div>
+              <div class="hero-card-tag">Filters</div>
+              <div class="hero-card-tag">Clear summary</div>
             </div>
           </div>
 
-          <!-- Voorbeeld 2 + 3: tool & AI-flow -->
+          <!-- Example 2 + 3: quote tool & chatbot -->
           <div class="hero-right-column">
             <div class="hero-mini">
               <div class="hero-mini-header">
-                <div class="hero-mini-title">Interne tool</div>
+                <div class="hero-mini-title">
+                  <span class="lang lang-en">Quote generator</span>
+                  <span class="lang lang-nl">Offerte-generator</span>
+                </div>
                 <div class="hero-mini-dot"></div>
               </div>
               <div class="hero-mini-lines">
@@ -1049,13 +1166,17 @@
                 <div class="hero-mini-line short"></div>
               </div>
               <div class="hero-mini-text">
-                Eén scherm in plaats van vijf losse tools.
+                <span class="lang lang-en">Form inputs → clear quote without extra copy-paste.</span>
+                <span class="lang lang-nl">Formulier-invoer → duidelijke offerte, zonder extra copy-paste.</span>
               </div>
             </div>
 
             <div class="hero-mini">
               <div class="hero-mini-header">
-                <div class="hero-mini-title">AI-flow</div>
+                <div class="hero-mini-title">
+                  <span class="lang lang-en">Website chatbot</span>
+                  <span class="lang lang-nl">Website-chatbot</span>
+                </div>
                 <div class="hero-mini-dot"></div>
               </div>
               <div class="hero-mini-lines">
@@ -1063,7 +1184,8 @@
                 <div class="hero-mini-line tiny"></div>
               </div>
               <div class="hero-mini-text">
-                Slim voorwerk; een mens beslist de laatste stap.
+                <span class="lang lang-en">Talk to your own site, see the data behind the answers.</span>
+                <span class="lang lang-nl">Praat met je eigen site, zie de data achter de antwoorden.</span>
               </div>
             </div>
           </div>
@@ -1072,80 +1194,135 @@
     </section>
 
     <!-- RECENT WORK -->
-    <section id="work" class="section" aria-label="Recent werk">
+    <section id="work" class="section">
       <div class="section-card">
         <div class="section-header">
           <div>
-            <div class="section-title">Recent werk</div>
+            <div class="section-title">
+              <span class="lang lang-en">Experience</span>
+              <span class="lang lang-nl">Ervaring</span>
+            </div>
             <h2 class="section-heading">
-              Meegebouwd aan sites en tools voor:
+              <span class="lang lang-en">From websites to tools that solve real problems</span>
+              <span class="lang lang-nl">Van websites naar tools die echte problemen oplossen</span>
             </h2>
           </div>
           <p class="section-text">
-            Onder andere Noordkroon, Woodlabs, Smølke, De Rode Winkel, IQIP,
-            Oogvereniging, EDSN en Leger des Heils (via verschillende bureaus en teams).
-            <br />
-            Wil je een vergelijkbare interface voor jouw organisatie?
-            <a href="#case">Bekijk de voorbeeldcase</a> of
-            <a href="#contact">deel je uitdaging</a> en ik denk gericht mee.
+            <span class="lang lang-en">
+              I have experience helping build websites for various brands and organisations.
+              That means I know how to keep interfaces calm and clear. Now I focus that experience
+              on tools: quote generators, internal flows and interactive data views.
+            </span>
+            <span class="lang lang-nl">
+              Ik heb ervaring met het (mee)bouwen van websites voor verschillende merken
+              en organisaties. Daardoor weet ik hoe je interfaces rustig en helder houdt.
+              Die ervaring gebruik ik nu vooral voor tools: offerte-generators, interne flows
+              en interactieve dataviews.
+            </span>
           </p>
         </div>
 
         <div class="logo-row">
-          <div class="logo-pill">Noordkroon</div>
-          <div class="logo-pill">Woodlabs</div>
-          <div class="logo-pill">Smølke</div>
-          <div class="logo-pill">De Rode Winkel</div>
-          <div class="logo-pill">IQIP</div>
-          <div class="logo-pill">Oogvereniging</div>
-          <div class="logo-pill">EDSN</div>
-          <div class="logo-pill">Leger des Heils</div>
+          <div class="logo-pill">Website projects (various brands)</div>
+          <div class="logo-pill">
+            <span class="lang lang-en">Quote generator (form → offer)</span>
+            <span class="lang lang-nl">Offerte-tool (formulier → offerte)</span>
+          </div>
+          <div class="logo-pill">
+            <span class="lang lang-en">Website chatbot (scrapes site & answers)</span>
+            <span class="lang lang-nl">Website-chatbot (scrapet site & antwoordt)</span>
+          </div>
+          <div class="logo-pill">
+            <span class="lang lang-en">Internal flows & small automations</span>
+            <span class="lang lang-nl">Interne flows & kleine automatiseringen</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CASE -->
-    <section id="case" class="section" aria-label="Case voorbeeld">
+    <!-- CASE: QUOTE GENERATOR -->
+    <section id="case" class="section">
       <div class="section-card">
         <div class="section-header">
           <div>
             <div class="section-title">Case</div>
             <h2 class="section-heading">
-              Van losse mails naar één rustige intake-flow
+              <span class="lang lang-en">Turning a messy quote process into one clean tool</span>
+              <span class="lang lang-nl">Van rommelig offerteproces naar één heldere tool</span>
             </h2>
           </div>
           <p class="section-text">
-            Dit is een voorbeeld van het soort werk dat ik doe. Geen compleet platform,
-            maar één gerichte interface rond een bestaand proces.
-            Meer van dit soort oplossingen?
-            <a href="#services">Bekijk waarmee ik help</a> of
-            <a href="#contact">start met jouw proces</a>.
+            <span class="lang lang-en">
+              One of my favourite projects: a quote generator that turns form inputs into a clear,
+              ready-to-send offer. Complex under the hood, but simple to use.
+            </span>
+            <span class="lang lang-nl">
+              Eén van mijn favoriete projecten: een offerte-generator die formulier-invoer
+              omzet naar een duidelijke, kant-en-klare offerte. Complex onder de motorkap,
+              simpel in gebruik.
+            </span>
           </p>
         </div>
 
         <div class="steps">
           <div class="step">
-            <div class="step-label">Situatie</div>
-            <h3 class="step-title">Veel heen-en-weer mail</h3>
+            <div class="step-label">
+              <span class="lang lang-en">Problem</span>
+              <span class="lang lang-nl">Probleem</span>
+            </div>
+            <h3 class="step-title">
+              <span class="lang lang-en">Too many manual steps</span>
+              <span class="lang lang-nl">Te veel handmatige stappen</span>
+            </h3>
             <p>
-              Intakes kwamen binnen via mail, telefoon en losse formulieren.
-              Overzicht raakte kwijt en het maken van offertes kostte onnodig veel tijd.
+              <span class="lang lang-en">
+                Form inputs had to be copied, adjusted and formatted into offers by hand.
+                Time-consuming and error-prone.
+              </span>
+              <span class="lang lang-nl">
+                Formulier-gegevens moesten handmatig worden gekopieerd, aangepast en
+                opgemaakt in offertes. Tijdrovend en foutgevoelig.
+              </span>
             </p>
           </div>
           <div class="step">
-            <div class="step-label">Oplossing</div>
-            <h3 class="step-title">Één intake-interface</h3>
+            <div class="step-label">
+              <span class="lang lang-en">Solution</span>
+              <span class="lang lang-nl">Oplossing</span>
+            </div>
+            <h3 class="step-title">
+              <span class="lang lang-en">A focused quote app</span>
+              <span class="lang lang-nl">Een gerichte offertetool</span>
+            </h3>
             <p>
-              Een minimal webflow waarin alle vragen, bijlagen en status
-              in één scherm samenkomen. Aansluitend op de tools die al gebruikt werden.
+              <span class="lang lang-en">
+                A small web app that takes the form inputs, applies all the logic and
+                outputs a clear quote layout. One tool, one flow.
+              </span>
+              <span class="lang lang-nl">
+                Een kleine webapp die formulier-invoer pakt, alle logica toepast en
+                een duidelijke offerte-opmaak oplevert. Eén tool, één flow.
+              </span>
             </p>
           </div>
           <div class="step">
-            <div class="step-label">Resultaat</div>
-            <h3 class="step-title">Minder gedoe, sneller duidelijk</h3>
+            <div class="step-label">
+              <span class="lang lang-en">Result</span>
+              <span class="lang lang-nl">Resultaat</span>
+            </div>
+            <h3 class="step-title">
+              <span class="lang lang-en">Faster quotes, less stress</span>
+              <span class="lang lang-nl">Snellere offertes, minder gedoe</span>
+            </h3>
             <p>
-              Minder mail heen en weer, sneller duidelijke offertes en beter
-              overzicht voor het team. Precies het soort versimpeling waar Crownetic voor staat.
+              <span class="lang lang-en">
+                Much less copy-paste, more consistent offers and a lot more focus on
+                the actual content instead of formatting.
+              </span>
+              <span class="lang lang-nl">
+                Veel minder copy-paste, consistentere offertes en meer focus op inhoud
+                in plaats van opmaak.
+              </span>
             </p>
           </div>
         </div>
@@ -1153,47 +1330,85 @@
     </section>
 
     <!-- SERVICES -->
-    <section id="services" class="section" aria-label="Waarmee kan ik helpen">
+    <section id="services" class="section">
       <div class="section-card">
         <div class="section-header">
           <div>
-            <div class="section-title">Waarmee</div>
+            <div class="section-title">
+              <span class="lang lang-en">What I build</span>
+              <span class="lang lang-nl">Wat ik bouw</span>
+            </div>
             <h2 class="section-heading">
-              Eén freelance partner voor website, tool én AI-flow
+              <span class="lang lang-en">Small applications around one clear problem</span>
+              <span class="lang lang-nl">Kleine applicaties rond één duidelijk probleem</span>
             </h2>
           </div>
           <p class="section-text">
-            Geen generieke tool, maar een gerichte interface rond jouw proces:
-            website, interne tool of AI-flow – of een combinatie daarvan.
-            <br />
-            Twijfel je wat past? <a href="#contact">Beschrijf je proces kort</a>,
-            dan krijg je een voorstel dat past bij jouw situatie.
+            <span class="lang lang-en">
+              I don’t start with “Which tech?”. I start with your problem: where do you lose time,
+              what feels clumsy, what data is hard to read? Then we decide if the answer is a tool,
+              a small app, a visual dashboard or a mix.
+            </span>
+            <span class="lang lang-nl">
+              Ik begin niet bij “Welke techniek?”, maar bij jouw probleem: waar verlies je tijd,
+              wat voelt onhandig, welke data is moeilijk leesbaar? Daarna kiezen we of de oplossing
+              een tool, kleine app, visueel dashboard of combinatie is.
+            </span>
           </p>
         </div>
 
         <div class="grid-3">
           <div class="tile">
-            <div class="tile-tag">Website</div>
-            <h3 class="tile-title">Rustige marketing- & productpagina’s</h3>
+            <div class="tile-tag">
+              <span class="lang lang-en">Data tools</span>
+              <span class="lang lang-nl">Datatools</span>
+            </div>
+            <h3 class="tile-title">
+              <span class="lang lang-en">From raw data to visual insight</span>
+              <span class="lang lang-nl">Van ruwe data naar visueel inzicht</span>
+            </h3>
             <ul class="tile-list">
-              <li>Heldere landingspagina’s met één hoofddoel</li>
-              <li>Product- of dienstuitleg zonder ruis</li>
+              <li class="lang lang-en">Interactive dashboards and simple data views.</li>
+              <li class="lang lang-en">Filters and summaries that make sense for your team.</li>
+
+              <li class="lang lang-nl">Interactieve dashboards en eenvoudige dataviews.</li>
+              <li class="lang lang-nl">Filters en samenvattingen die passen bij jouw team.</li>
             </ul>
           </div>
+
           <div class="tile">
-            <div class="tile-tag">Interne tool</div>
-            <h3 class="tile-title">Één scherm voor je proces</h3>
+            <div class="tile-tag">
+              <span class="lang lang-en">Process tools</span>
+              <span class="lang lang-nl">Procestools</span>
+            </div>
+            <h3 class="tile-title">
+              <span class="lang lang-en">Make one task much easier</span>
+              <span class="lang lang-nl">Maak één taak veel makkelijker</span>
+            </h3>
             <ul class="tile-list">
-              <li>Offerte-, intake- of statusflows op maat</li>
-              <li>Sluit aan op hoe je team nu al werkt</li>
+              <li class="lang lang-en">Quote generators, intake flows and internal checklists.</li>
+              <li class="lang lang-en">Designed around your existing way of working.</li>
+
+              <li class="lang lang-nl">Offerte-generators, intakeflows en interne checklists.</li>
+              <li class="lang lang-nl">Aansluitend op hoe jullie nu al werken.</li>
             </ul>
           </div>
+
           <div class="tile">
-            <div class="tile-tag">AI-flow</div>
-            <h3 class="tile-title">Kleine AI-stappen in je workflow</h3>
+            <div class="tile-tag">
+              <span class="lang lang-en">Web apps & sites</span>
+              <span class="lang lang-nl">Webapps & sites</span>
+            </div>
+            <h3 class="tile-title">
+              <span class="lang lang-en">The “face” of your tool</span>
+              <span class="lang lang-nl">Het “gezicht” van je tool</span>
+            </h3>
             <ul class="tile-list">
-              <li>Voorwerk voor teksten en antwoorden</li>
-              <li>Minder copy-paste, meer focuswerk</li>
+              <li class="lang lang-en">Simple landing pages for your tool or service.</li>
+              <li class="lang lang-en">Clean interfaces that feel calm to use.</li>
+
+              <li class="lang lang-nl">Eenvoudige landingspagina’s voor je tool of dienst.</li>
+              <li class="lang lang-nl">Rustige interfaces die prettig aanvoelen.</li>
             </ul>
           </div>
         </div>
@@ -1201,44 +1416,81 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="section" aria-label="Over Crownetic">
+    <section id="about" class="section">
       <div class="section-card">
         <div class="section-header">
           <div>
-            <div class="section-title">Over</div>
+            <div class="section-title">
+              <span class="lang lang-en">About</span>
+              <span class="lang lang-nl">Over</span>
+            </div>
             <h2 class="section-heading">
-              Wie achter Crownetic zit
+              <span class="lang lang-en">A solo app maker who likes complex problems, simple tools</span>
+              <span class="lang lang-nl">Een solo applicatie maker die houdt van complexe problemen, simpele tools</span>
             </h2>
           </div>
           <p class="section-text">
-            Je werkt direct met één persoon, niet met een wisselend projectteam.
-            Dat scheelt uitleg, schakelt sneller en zorgt voor consistente interfaces.
-            Meer over mijn werk zie je ook op
-            <a href="https://github.com/crownetic" target="_blank" rel="noopener">GitHub</a>.
+            <span class="lang lang-en">
+              I work solo as an application maker and interface designer. I enjoy complex logic
+              and data, but I care most about the tool feeling simple for the person using it.
+              Dutch and English are both fine.
+            </span>
+            <span class="lang lang-nl">
+              Ik werk solo als applicatie maker en interface designer. Ik vind complexe logica
+              en data leuk, maar het belangrijkste is dat de tool simpel voelt voor de gebruiker.
+              Nederlands en Engels zijn allebei prima.
+            </span>
           </p>
         </div>
 
         <div class="steps">
           <div class="step">
-            <h3 class="step-title">Freelance designer & developer</h3>
+            <h3 class="step-title">
+              <span class="lang lang-en">Web experience, tool focus</span>
+              <span class="lang lang-nl">Webervaring, focus op tools</span>
+            </h3>
             <p>
-              Ik werk als freelance designer en front-end developer en help teams met
-              rustige, minimal interfaces. Ervaring met projecten voor o.a. Noordkroon,
-              Woodlabs, Smølke en Leger des Heils (via verschillende bureaus).
+              <span class="lang lang-en">
+                I started by helping build websites for different brands. That taught me how to
+                keep interfaces calm. Now I use that to build tools that save time and reduce friction.
+              </span>
+              <span class="lang lang-nl">
+                Ik begon met het (mee)bouwen van websites voor verschillende merken. Daar leerde ik
+                hoe je interfaces rustig houdt. Nu gebruik ik dat om tools te bouwen die tijd besparen
+                en frictie weghalen.
+              </span>
             </p>
           </div>
           <div class="step">
-            <h3 class="step-title">Focus op eenvoud</h3>
+            <h3 class="step-title">
+              <span class="lang lang-en">Small, sharp projects</span>
+              <span class="lang lang-nl">Kleine, scherpe projecten</span>
+            </h3>
             <p>
-              Liever één kleine interface die dagelijks gebruikt wordt dan een groot
-              platform dat in de la verdwijnt. Elke pixel moet bijdragen aan minder gedoe.
+              <span class="lang lang-en">
+                Instead of huge systems, I prefer focused tools: a quote generator, a chatbot for
+                your site, a clear data view. One problem at a time.
+              </span>
+              <span class="lang lang-nl">
+                In plaats van grote systemen werk ik liever aan gerichte tools: een offerte-generator,
+                een chatbot voor je site, een heldere dataview. Eén probleem tegelijk.
+              </span>
             </p>
           </div>
           <div class="step">
-            <h3 class="step-title">Taal & techniek</h3>
+            <h3 class="step-title">
+              <span class="lang lang-en">Remote, NL + international</span>
+              <span class="lang lang-nl">Remote, NL + internationaal</span>
+            </h3>
             <p>
-              Ik denk mee over de woorden, de flow én de techniek. Zodat design, copy en
-              front-end bij elkaar passen en het geheel rustig aanvoelt.
+              <span class="lang lang-en">
+                I usually work remote, with clients in the Netherlands and abroad. Tools can be
+                in English or Dutch – whatever fits your team best.
+              </span>
+              <span class="lang lang-nl">
+                Ik werk meestal remote, met klanten in Nederland en daarbuiten. Tools kunnen in
+                het Engels of Nederlands – wat maar het beste past bij je team.
+              </span>
             </p>
           </div>
         </div>
@@ -1246,46 +1498,90 @@
     </section>
 
     <!-- HOW IT WORKS -->
-    <section id="how" class="section" aria-label="Hoe ik werk">
+    <section id="how" class="section">
       <div class="section-card">
         <div class="section-header">
           <div>
-            <div class="section-title">Aanpak</div>
+            <div class="section-title">
+              <span class="lang lang-en">How it works</span>
+              <span class="lang lang-nl">Aanpak</span>
+            </div>
             <h2 class="section-heading">
-              In drie stappen van gedoe naar een rustige interface
+              <span class="lang lang-en">From “this is annoying” to a small working tool</span>
+              <span class="lang lang-nl">Van “dit is irritant” naar een kleine werkende tool</span>
             </h2>
           </div>
           <p class="section-text">
-            Geen groot traject met vijftien sessies, maar een simpele lijn:
-            probleem scherp krijgen, interface kiezen, bouwen en bijschaven.
-            Wil je weten hoe dat voor jouw case zou werken?
-            <a href="#contact">Stuur je situatie in</a>.
+            <span class="lang lang-en">
+              We keep it simple: understand the problem, design the flow, build and refine.
+              No big consultancy decks, just enough structure to build something that really helps.
+            </span>
+            <span class="lang lang-nl">
+              We houden het simpel: probleem snappen, flow ontwerpen, bouwen en bijschaven.
+              Geen dikke consultancy-decks, wel genoeg structuur om iets te bouwen dat echt helpt.
+            </span>
           </p>
         </div>
 
         <div class="steps">
           <div class="step">
-            <div class="step-label">Stap 1</div>
-            <h3 class="step-title">Probleem scherp</h3>
+            <div class="step-label">
+              <span class="lang lang-en">Step 1</span>
+              <span class="lang lang-nl">Stap 1</span>
+            </div>
+            <h3 class="step-title">
+              <span class="lang lang-en">Clarify the problem</span>
+              <span class="lang lang-nl">Probleem scherp krijgen</span>
+            </h3>
             <p>
-              In een korte call bekijken we waar tijd weglekt: in offertes,
-              intakes, interne afstemming of iets anders. We kiezen één proces om mee te beginnen.
+              <span class="lang lang-en">
+                You explain where time is lost or work feels clumsy: quotes, data, internal tasks.
+                We pick one concrete thing to improve.
+              </span>
+              <span class="lang lang-nl">
+                Jij legt uit waar tijd weglekt of werk onhandig voelt: offertes, data, interne taken.
+                We kiezen één concreet ding om te verbeteren.
+              </span>
             </p>
           </div>
           <div class="step">
-            <div class="step-label">Stap 2</div>
-            <h3 class="step-title">Concept & interface</h3>
+            <div class="step-label">
+              <span class="lang lang-en">Step 2</span>
+              <span class="lang lang-nl">Stap 2</span>
+            </div>
+            <h3 class="step-title">
+              <span class="lang lang-en">Design the tool</span>
+              <span class="lang lang-nl">Tool ontwerpen</span>
+            </h3>
             <p>
-              We kiezen de slimste vorm: website, interne tool, AI-flow
-              of een combinatie. Altijd minimal, zonder extra ruis of set-up gedoe.
+              <span class="lang lang-en">
+                I sketch a simple flow and interface: inputs, logic, output. Once it feels right,
+                I turn it into a working web app.
+              </span>
+              <span class="lang lang-nl">
+                Ik schets een simpele flow en interface: input, logica, output. Als dat goed voelt,
+                maak ik er een werkende webapp van.
+              </span>
             </p>
           </div>
           <div class="step">
-            <div class="step-label">Stap 3</div>
-            <h3 class="step-title">Bouw & iteratie</h3>
+            <div class="step-label">
+              <span class="lang lang-en">Step 3</span>
+              <span class="lang lang-nl">Stap 3</span>
+            </div>
+            <h3 class="step-title">
+              <span class="lang lang-en">Test & refine</span>
+              <span class="lang lang-nl">Testen & bijschaven</span>
+            </h3>
             <p>
-              Ik bouw, we testen met echte gebruikers en scherpen bij.
-              Zodat je niet alleen iets moois hebt, maar ook echt tijd wint.
+              <span class="lang lang-en">
+                You and your team use the tool in real work. We tweak the parts that feel rough
+                until it becomes something you rely on every day.
+              </span>
+              <span class="lang lang-nl">
+                Jij en je team gebruiken de tool in het echte werk. We schaven de ruwe stukjes bij
+                tot het iets is waar je dagelijks op leunt.
+              </span>
             </p>
           </div>
         </div>
@@ -1293,35 +1589,45 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="section" aria-label="Contact">
+    <section id="contact" class="section">
       <div class="contact-card">
         <div>
-          <div class="contact-title">Heb je een proces dat slimmer kan?</div>
+          <div class="contact-title">
+            <span class="lang lang-en">Have a process that could be much simpler?</span>
+            <span class="lang lang-nl">Heb je een proces dat veel simpeler kan?</span>
+          </div>
           <div class="contact-text">
-            Herken je één van deze dingen?
+            <span class="lang lang-en">
+              Think of quote flows, data that nobody really reads, or repetitive manual work
+              your team keeps doing. Describe it in your own words – no need for perfect specs.
+            </span>
+            <span class="lang lang-nl">
+              Denk aan offerteflows, data waar eigenlijk niemand echt naar kijkt, of
+              repetitief handwerk dat je team blijft doen. Beschrijf het in je eigen woorden –
+              je hebt geen perfecte specs nodig.
+            </span>
             <ul class="contact-bullets">
-              <li>Veel heen-en-weer mail bij aanvragen of offertes</li>
-              <li>Je team werkt in 4–5 verschillende tools voor één proces</li>
-              <li>Je weet dat AI kan helpen, maar niet waar te beginnen</li>
+              <li class="lang lang-en">English or Dutch is both fine.</li>
+              <li class="lang lang-en">I reply with a realistic suggestion, not buzzwords.</li>
+
+              <li class="lang lang-nl">Nederlands of Engels is allebei goed.</li>
+              <li class="lang lang-nl">Je krijgt een realistisch voorstel, geen buzzword-verhaal.</li>
             </ul>
-            Vul kort je situatie in. Ik reageer binnen één werkdag met:
-            <br />– een eerste inschatting, of<br />– een voorstel voor een korte call.
           </div>
         </div>
 
         <div class="contact-actions">
-          <!-- FormSubmit: gratis backend -->
+          <!-- FormSubmit: free backend -->
           <form
             id="contact-form"
             class="contact-form"
             action="https://formsubmit.co/crownetic@hotmail.com"
             method="POST"
-            aria-label="Contactformulier om je uitdaging te delen"
+            aria-label="Contact form to share your challenge"
           >
-            <!-- FormSubmit options -->
-            <input type="hidden" name="_subject" value="Nieuwe uitdaging via crownetic.com" />
+            <input type="hidden" name="_subject" value="New challenge via crownetic.com" />
             <input type="hidden" name="_template" value="table" />
-            <!-- Anti-spam honeypot -->
+            <!-- honeypot -->
             <input
               type="text"
               name="_honey"
@@ -1332,89 +1638,160 @@
             />
 
             <div class="field">
-              <label for="name">Naam</label>
-              <input id="name" name="name" type="text" placeholder="Je naam" required />
+              <label for="name">
+                <span class="lang lang-en">Name</span>
+                <span class="lang lang-nl">Naam</span>
+              </label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
             </div>
             <div class="field">
-              <label for="email">E-mailadres</label>
-              <input id="email" name="email" type="email" placeholder="jij@bedrijf.nl" required />
+              <label for="email">
+                <span class="lang lang-en">E-mail address</span>
+                <span class="lang lang-nl">E-mailadres</span>
+              </label>
+              <input id="email" name="email" type="email" placeholder="you@company.com" required />
             </div>
             <div class="field">
-              <label for="company">Bedrijf (optioneel)</label>
-              <input id="company" name="company" type="text" placeholder="Bedrijfsnaam" />
+              <label for="company">
+                <span class="lang lang-en">Company (optional)</span>
+                <span class="lang lang-nl">Bedrijf (optioneel)</span>
+              </label>
+              <input id="company" name="company" type="text" placeholder="Company name" />
             </div>
             <div class="field">
-              <label for="challenge">Wat is je uitdaging?</label>
+              <label for="challenge">
+                <span class="lang lang-en">What feels slow or messy right now?</span>
+                <span class="lang lang-nl">Wat voelt nu traag of rommelig?</span>
+              </label>
               <textarea
                 id="challenge"
                 name="challenge"
-                placeholder="Welke taak of welk proces kost nu te veel tijd?"
+                placeholder="Short description of the task, data or process you’d like to improve."
                 required
               ></textarea>
             </div>
-            <button type="submit" class="contact-submit" aria-label="Verstuur je uitdaging">
-              Verstuur je uitdaging
+            <button type="submit" class="contact-submit">
+              <span class="lang lang-en">Send your challenge</span>
+              <span class="lang lang-nl">Verstuur je uitdaging</span>
             </button>
           </form>
 
           <div class="contact-note">
-            Werkt het formulier niet? Gebruik dan de knop hieronder om een e-mail te openen.
-            <br />
-            <button
-              type="button"
-              class="contact-submit js-email-button"
-              aria-label="Stuur een e-mail naar Crownetic"
-            >
-              Stuur een e-mail
-            </button>
+            <span class="lang lang-en">
+              If the form gives issues, you can also contact me directly:
+            </span>
+            <span class="lang lang-nl">
+              Werkt het formulier niet? Je kunt me ook direct bereiken:
+            </span>
+          </div>
+
+          <div class="contact-links">
+            <span class="lang lang-en">
+              E-mail:
+              <a href="mailto:crownetic@hotmail.com">crownetic@hotmail.com</a><br />
+              WhatsApp:
+              <a href="https://wa.me/31636589899" target="_blank" rel="noopener">+31 6 3658 9899</a>
+            </span>
+            <span class="lang lang-nl">
+              E-mail:
+              <a href="mailto:crownetic@hotmail.com">crownetic@hotmail.com</a><br />
+              WhatsApp:
+              <a href="https://wa.me/31636589899" target="_blank" rel="noopener">+31 6 3658 9899</a>
+            </span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ (voor mensen én AI) -->
-    <section id="faq" class="section" aria-label="Veelgestelde vragen over Crownetic">
+    <!-- FAQ -->
+    <section id="faq" class="section">
       <div class="section-card">
         <div class="section-header">
           <div>
             <div class="section-title">FAQ</div>
             <h2 class="section-heading">
-              Veelgestelde vragen over Crownetic
+              <span class="lang lang-en">Quick answers for you (and for AI)</span>
+              <span class="lang lang-nl">Korte antwoorden voor jou (en voor AI)</span>
             </h2>
           </div>
           <p class="section-text">
-            Korte antwoorden die ook door zoekmachines en AI-systemen makkelijk te begrijpen zijn.
-            Nog een vraag? <a href="#contact">Stel hem via het formulier</a>.
+            <span class="lang lang-en">
+              These answers are written so humans and AI systems can quickly understand what
+              Crownetic is about.
+            </span>
+            <span class="lang lang-nl">
+              Deze antwoorden zijn zo geschreven dat mensen én AI-systemen snel snappen
+              waar Crownetic over gaat.
+            </span>
           </p>
         </div>
 
         <ul class="faq-list">
           <li>
-            <div class="faq-item-question">Wat doet Crownetic precies?</div>
+            <div class="faq-item-question">
+              <span class="lang lang-en">Do you only build tools, or also websites?</span>
+              <span class="lang lang-nl">Bouw je alleen tools, of ook websites?</span>
+            </div>
             <div>
-              Crownetic ontwerpt en bouwt minimal websites, interne tools en AI-flows
-              die processen versimpelen en tijd besparen.
+              <span class="lang lang-en">
+                The focus is on tools and small web apps, but I also build simple landing pages
+                and interfaces around them so people can actually use them.
+              </span>
+              <span class="lang lang-nl">
+                De focus ligt op tools en kleine webapps, maar ik bouw ook eenvoudige
+                landingspagina’s en interfaces eromheen, zodat mensen ze echt kunnen gebruiken.
+              </span>
             </div>
           </li>
           <li>
-            <div class="faq-item-question">Voor welk type bedrijven werk je?</div>
+            <div class="faq-item-question">
+              <span class="lang lang-en">Which industries do you work in?</span>
+              <span class="lang lang-nl">In welke sectoren werk je?</span>
+            </div>
             <div>
-              Vooral voor bureaus en mkb-bedrijven die hun site willen verbeteren
-              of interne werkprocessen slimmer willen maken.
+              <span class="lang lang-en">
+                It doesn’t matter much which industry, as long as there is a clear problem
+                and data or workflows to work with. If the challenge is interesting, I’m in.
+              </span>
+              <span class="lang lang-nl">
+                De sector maakt minder uit dan het probleem. Zolang er een duidelijk probleem is
+                en data of workflows om mee te werken, is het interessant. Als de uitdaging leuk is,
+                ben ik erbij.
+              </span>
             </div>
           </li>
           <li>
-            <div class="faq-item-question">Hoe start een samenwerking?</div>
+            <div class="faq-item-question">
+              <span class="lang lang-en">How much does a project cost?</span>
+              <span class="lang lang-nl">Wat kost een project?</span>
+            </div>
             <div>
-              Je deelt je uitdaging via het formulier. Daarna volgt een korte
-              intake en een voorstel met aanpak en globale planning.
+              <span class="lang lang-en">
+                It depends on what’s needed: a small internal tool is different from a bigger
+                application. Once I understand your problem, I can give a clear range before
+                we start.
+              </span>
+              <span class="lang lang-nl">
+                Dat hangt af van wat nodig is: een kleine interne tool is iets anders dan
+                een grotere applicatie. Als ik je probleem snap, kan ik een duidelijke bandbreedte
+                geven voordat we beginnen.
+              </span>
             </div>
           </li>
           <li>
-            <div class="faq-item-question">Doe je ook alleen front-end werk?</div>
+            <div class="faq-item-question">
+              <span class="lang lang-en">How do we start?</span>
+              <span class="lang lang-nl">Hoe starten we?</span>
+            </div>
             <div>
-              Ja. Ik kan als freelance front-end developer aansluiten bij een bestaand team
-              of design omzetten in een moderne, minimal interface.
+              <span class="lang lang-en">
+                Send me a message via the form, e-mail or WhatsApp with a short description
+                of your situation. I’ll respond with ideas for a first small step.
+              </span>
+              <span class="lang lang-nl">
+                Stuur een bericht via het formulier, e-mail of WhatsApp met een korte beschrijving
+                van je situatie. Ik reageer met ideeën voor een eerste kleine stap.
+              </span>
             </div>
           </li>
         </ul>
@@ -1422,32 +1799,58 @@
     </section>
 
     <footer>
-      <div>© <span id="year"></span> Crownetic. Minimal websites, tools & AI-flows.</div>
+      <div>© <span id="year"></span> Crownetic. Simple web apps, tools & AI-flows.</div>
       <div class="footer-share">
-        <span>Deel deze pagina:</span>
+        <span class="lang lang-en">Share this page:</span>
+        <span class="lang lang-nl">Deel deze pagina:</span>
         <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcrownetic.com%2F" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fcrownetic.com%2F&text=Minimal%20websites%2C%20tools%20en%20AI-flows%20door%20Crownetic" target="_blank" rel="noopener">X</a>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fcrownetic.com%2F&text=Simple%20web%20apps%2C%20tools%20and%20AI-flows%20by%20Crownetic" target="_blank" rel="noopener">X</a>
         <a href="https://github.com/crownetic" target="_blank" rel="noopener">GitHub</a>
       </div>
     </footer>
   </main>
 
   <script>
-    // Huidig jaar in de footer
+    // Current year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // E-mail via JS, zodat het adres niet als platte tekst in HTML staat
+    // Language switch
     (function () {
-      const user = "crownetic";
-      const domain = "hotmail.com";
-      const addr = user + "@" + domain;
-
-      document.querySelectorAll(".js-email-button").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          window.location.href = "mailto:" + addr;
+      const root = document.documentElement;
+      const buttons = document.querySelectorAll(".lang-btn[data-lang-switch]");
+      function setLang(lang) {
+        if (lang !== "en" && lang !== "nl") return;
+        root.setAttribute("data-lang", lang);
+        root.setAttribute("lang", lang);
+        try {
+          localStorage.setItem("siteLang", lang);
+        } catch (e) {}
+      }
+      // Load saved language
+      try {
+        const stored = localStorage.getItem("siteLang");
+        if (stored === "en" || stored === "nl") {
+          setLang(stored);
+        }
+      } catch (e) {}
+      // Click handlers
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const lang = btn.getAttribute("data-lang-switch");
+          setLang(lang);
         });
       });
     })();
+
+    // Optional: JS email open button (if you add one later)
+    // const user = "crownetic";
+    // const domain = "hotmail.com";
+    // const addr = user + "@" + domain;
+    // document.querySelectorAll(".js-email-button").forEach(btn => {
+    //   btn.addEventListener("click", () => {
+    //     window.location.href = "mailto:" + addr;
+    //   });
+    // });
   </script>
 </body>
 </html>
