@@ -42,9 +42,7 @@
       --max-width: 1080px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -63,8 +61,6 @@
       max-width: var(--max-width);
       padding: 40px 20px 72px;
     }
-
-    /* HEADER */
 
     header {
       display: flex;
@@ -147,11 +143,7 @@
       text-decoration: none;
     }
 
-    .nav-cta:hover {
-      opacity: 0.9;
-    }
-
-    /* HERO */
+    .nav-cta:hover { opacity: 0.9; }
 
     .hero {
       margin-top: 32px;
@@ -231,9 +223,7 @@
       cursor: pointer;
     }
 
-    .btn-primary:hover {
-      opacity: 0.9;
-    }
+    .btn-primary:hover { opacity: 0.9; }
 
     .hero-note {
       margin-top: 8px;
@@ -377,15 +367,8 @@
       width: 70%;
     }
 
-    .hero-mini-line.short {
-      width: 60%;
-    }
-
-    .hero-mini-line.tiny {
-      width: 40%;
-    }
-
-    /* SECTIONS */
+    .hero-mini-line.short { width: 60%; }
+    .hero-mini-line.tiny { width: 40%; }
 
     .section {
       margin-top: 60px;
@@ -458,8 +441,6 @@
       font-size: 10px;
       margin-bottom: 8px;
     }
-
-    /* CONTACT */
 
     .contact-card {
       margin-top: 32px;
@@ -548,6 +529,15 @@
       background: #e4e4ee;
     }
 
+    .contact-status {
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .contact-status--info { color: #d0d0dd; }
+    .contact-status--success { color: #4ade80; }
+    .contact-status--error { color: #fca5a5; }
+
     .contact-note {
       font-size: 11px;
       color: #88889a;
@@ -558,8 +548,6 @@
       color: #d0d0dd;
       text-decoration: underline;
     }
-
-    /* FOOTER */
 
     footer {
       margin-top: 52px;
@@ -583,17 +571,13 @@
       text-decoration: underline;
     }
 
-    /* RESPONSIVE */
-
     @media (max-width: 860px) {
       .hero {
         grid-template-columns: 1fr;
         padding: 34px 24px 30px;
         gap: 28px;
       }
-      .hero-visual {
-        order: -1;
-      }
+      .hero-visual { order: -1; }
     }
 
     @media (max-width: 720px) {
@@ -609,15 +593,9 @@
         margin-top: 20px;
         margin-bottom: 44px;
       }
-      .section {
-        margin-top: 48px;
-      }
-      .grid-3 {
-        grid-template-columns: 1fr;
-      }
-      .contact-card {
-        padding: 20px 16px 18px;
-      }
+      .section { margin-top: 48px; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .contact-card { padding: 20px 16px 18px; }
     }
   </style>
 </head>
@@ -775,42 +753,32 @@
           </div>
 
           <div class="contact-actions">
-            <form
-              class="contact-form"
-              action="https://formsubmit.co/crownetic@hotmail.com"
-              method="POST"
-            >
-              <!-- Hidden fields for FormSubmit -->
-              <input type="hidden" name="_subject" value="Nieuwe uitdaging via crownetic.com">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_next" value="https://crownetic.com/">
-
+            <form id="contact-form" class="contact-form">
               <div class="field">
                 <label for="name">Naam</label>
-                <input id="name" name="Naam" type="text" placeholder="Je naam" required />
+                <input id="name" name="name" type="text" placeholder="Je naam" required />
               </div>
               <div class="field">
                 <label for="email">E-mailadres</label>
-                <input id="email" name="E-mail" type="email" placeholder="jij@bedrijf.nl" required />
+                <input id="email" name="email" type="email" placeholder="jij@bedrijf.nl" required />
               </div>
               <div class="field">
                 <label for="company">Bedrijf (optioneel)</label>
-                <input id="company" name="Bedrijf" type="text" placeholder="Bedrijfsnaam" />
+                <input id="company" name="company" type="text" placeholder="Bedrijfsnaam" />
               </div>
               <div class="field">
                 <label for="challenge">Wat is je uitdaging?</label>
                 <textarea
                   id="challenge"
-                  name="Uitdaging"
+                  name="challenge"
                   placeholder="Welke taak of welk proces kost nu te veel tijd?"
                 ></textarea>
               </div>
               <button type="submit" class="contact-submit">Verstuur je uitdaging</button>
             </form>
+            <div id="form-status" class="contact-status"></div>
             <div class="contact-note">
-              Je bericht wordt veilig verstuurd via FormSubmit naar
-              <strong>crownetic@hotmail.com</strong>.  
-              Werkt het niet? Mail dan direct naar
+              Werkt het formulier niet? Mail dan direct naar
               <a href="mailto:crownetic@hotmail.com">crownetic@hotmail.com</a>.
             </div>
           </div>
@@ -828,6 +796,47 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const form = document.getElementById("contact-form");
+    const statusEl = document.getElementById("form-status");
+
+    function setStatus(type, message) {
+      statusEl.textContent = message;
+      statusEl.className = "contact-status";
+      if (type === "info") statusEl.classList.add("contact-status--info");
+      if (type === "success") statusEl.classList.add("contact-status--success");
+      if (type === "error") statusEl.classList.add("contact-status--error");
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      setStatus("info", "Bezig met versturen...");
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch("http://crownetic.gt.tc/email.php", {
+          method: "POST",
+          body: formData,
+        });
+
+        let data;
+        try {
+          data = await res.json();
+        } catch {
+          data = { success: false, message: "Onverwacht antwoord van de server." };
+        }
+
+        if (res.ok && data.success) {
+          setStatus("success", data.message || "Bedankt, je bericht is verstuurd.");
+          form.reset();
+        } else {
+          setStatus("error", data.message || "Er ging iets mis bij het versturen.");
+        }
+      } catch (err) {
+        setStatus("error", "Kon geen verbinding maken met de server.");
+      }
+    });
   </script>
 </body>
 </html>
