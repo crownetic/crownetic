@@ -110,7 +110,7 @@
       --accent: #0f8fff;
       --accent-soft: #e6f2ff;
       --text: #111118;
-      --muted: #75757f;
+      --muted: #4b5563; /* donkerder voor beter contrast */
       --border-subtle: rgba(0, 0, 0, 0.06);
       --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.10);
       --radius-xl: 32px;
@@ -213,7 +213,7 @@
     nav a {
       color: var(--muted);
       text-decoration: none;
-      padding: 6px 10px;
+      padding: 9px 12px;
       border-radius: 999px;
       border: 1px solid transparent;
       transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
@@ -232,7 +232,7 @@
       text-align: center;
       line-height: 1.2;
       border-radius: 999px;
-      padding: 7px 14px;
+      padding: 9px 16px;
       border: none;
       background: #111118;
       color: #f5f5f7;
@@ -354,7 +354,7 @@
       justify-content: center;
       text-align: center;
       line-height: 1.2;
-      padding: 10px 18px;
+      padding: 12px 20px;
       border-radius: 999px;
       border: none;
       background: #111118;
@@ -585,6 +585,9 @@
       border: 1px solid var(--border-subtle);
       white-space: nowrap;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .logo-pill:hover {
@@ -705,7 +708,7 @@
 
     .contact-text {
       font-size: 13px;
-      color: #b3b3c0;
+      color: #e5e7eb; /* betere contrast op donker */
       max-width: 27rem;
     }
 
@@ -713,7 +716,7 @@
       margin: 8px 0 10px;
       padding-left: 18px;
       font-size: 12px;
-      color: #d0d0dd;
+      color: #f3f4f6;
     }
 
     .contact-actions {
@@ -737,23 +740,23 @@
 
     .field label {
       font-size: 11px;
-      color: #d0d0dd;
+      color: #e5e7eb;
     }
 
     .field input,
     .field textarea {
       border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.35);
       background: rgba(5, 5, 10, 0.9);
       color: #f5f5f7;
-      padding: 7px 9px;
+      padding: 9px 11px;
       font-size: 13px;
       font-family: inherit;
     }
 
     .field input::placeholder,
     .field textarea::placeholder {
-      color: #777792;
+      color: #9ca3af;
     }
 
     .field textarea {
@@ -766,7 +769,7 @@
       margin-top: 6px;
       border-radius: 999px;
       border: none;
-      padding: 8px 16px;
+      padding: 10px 18px;
       background: #f5f5f7;
       color: #111118;
       font-size: 13px;
@@ -783,7 +786,7 @@
 
     .contact-note {
       font-size: 11px;
-      color: #88889a;
+      color: #9ca3af;
       margin-top: 4px;
     }
 
@@ -831,6 +834,14 @@
       gap: 8px;
       font-size: 11px;
       align-items: center;
+    }
+
+    /* Global tap targets */
+    nav a,
+    .btn-primary,
+    .nav-cta,
+    .contact-submit {
+      min-height: 44px;
     }
 
     /* RESPONSIVE */
@@ -948,7 +959,7 @@
         </div>
       </div>
 
-      <nav>
+      <nav aria-label="Hoofdnavigatie">
         <a href="#work">Recent werk</a>
         <a href="#services">Waarmee</a>
         <a href="#case">Case</a>
@@ -974,6 +985,7 @@
         <p class="hero-sub">
           Crownetic helpt je processen simpeler te maken: van marketingwebsite tot interne tool
           en kleine AI-flows eromheen. Eén persoon, korte lijnen, rustige interfaces.
+          <a href="#contact">Plan de eerste stap</a>.
         </p>
 
         <div class="hero-outcomes">
@@ -1075,7 +1087,7 @@
             <br />
             Wil je een vergelijkbare interface voor jouw organisatie?
             <a href="#case">Bekijk de voorbeeldcase</a> of
-            <a href="#contact">deel je uitdaging</a>.
+            <a href="#contact">deel je uitdaging</a> en ik denk gericht mee.
           </p>
         </div>
 
@@ -1104,8 +1116,10 @@
           </div>
           <p class="section-text">
             Dit is een voorbeeld van het soort werk dat ik doe. Geen compleet platform,
-            maar één gerichte interface rond een bestaand proces. Meer van dit soort oplossingen?
-            <a href="#services">Bekijk waarmee ik help</a>.
+            maar één gerichte interface rond een bestaand proces.
+            Meer van dit soort oplossingen?
+            <a href="#services">Bekijk waarmee ik help</a> of
+            <a href="#contact">start met jouw proces</a>.
           </p>
         </div>
 
@@ -1153,7 +1167,7 @@
             website, interne tool of AI-flow – of een combinatie daarvan.
             <br />
             Twijfel je wat past? <a href="#contact">Beschrijf je proces kort</a>,
-            dan denk ik mee.
+            dan krijg je een voorstel dat past bij jouw situatie.
           </p>
         </div>
 
@@ -1244,6 +1258,8 @@
           <p class="section-text">
             Geen groot traject met vijftien sessies, maar een simpele lijn:
             probleem scherp krijgen, interface kiezen, bouwen en bijschaven.
+            Wil je weten hoe dat voor jouw case zou werken?
+            <a href="#contact">Stuur je situatie in</a>.
           </p>
         </div>
 
@@ -1300,12 +1316,20 @@
             class="contact-form"
             action="https://formsubmit.co/crownetic@hotmail.com"
             method="POST"
+            aria-label="Contactformulier om je uitdaging te delen"
           >
             <!-- FormSubmit options -->
             <input type="hidden" name="_subject" value="Nieuwe uitdaging via crownetic.com" />
             <input type="hidden" name="_template" value="table" />
             <!-- Anti-spam honeypot -->
-            <input type="text" name="_honey" class="honeypot-input" tabindex="-1" autocomplete="off" />
+            <input
+              type="text"
+              name="_honey"
+              class="honeypot-input"
+              tabindex="-1"
+              aria-hidden="true"
+              autocomplete="off"
+            />
 
             <div class="field">
               <label for="name">Naam</label>
@@ -1328,13 +1352,21 @@
                 required
               ></textarea>
             </div>
-            <button type="submit" class="contact-submit">Verstuur je uitdaging</button>
+            <button type="submit" class="contact-submit" aria-label="Verstuur je uitdaging">
+              Verstuur je uitdaging
+            </button>
           </form>
 
           <div class="contact-note">
             Werkt het formulier niet? Gebruik dan de knop hieronder om een e-mail te openen.
             <br />
-            <button type="button" class="contact-submit js-email-button">Stuur een e-mail</button>
+            <button
+              type="button"
+              class="contact-submit js-email-button"
+              aria-label="Stuur een e-mail naar Crownetic"
+            >
+              Stuur een e-mail
+            </button>
           </div>
         </div>
       </div>
@@ -1352,6 +1384,7 @@
           </div>
           <p class="section-text">
             Korte antwoorden die ook door zoekmachines en AI-systemen makkelijk te begrijpen zijn.
+            Nog een vraag? <a href="#contact">Stel hem via het formulier</a>.
           </p>
         </div>
 
