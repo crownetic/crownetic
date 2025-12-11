@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crownetic – Product Chooser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #020617 0, #020617 55%, #000 100%);
+      color: #e5e7eb;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 18px;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 4px;
+    }
+
+    .tagline {
+      color: #38bdf8;
+      font-size: 0.93rem;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      max-width: 650px;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 22px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #111827 0, #020617 55%);
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+      padding: 16px 18px 18px;
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .card p.sub {
+      font-size: 0.88rem;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .steps-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .steps {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .step-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.95);
+      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .step-pill span.num {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.95);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+    }
+
+    .step-pill[data-active="true"] {
+      border-color: rgba(129, 140, 248, 0.95);
+      background: linear-gradient(to right, rgba(79, 70, 229, 0.9), rgba(6, 182, 212, 0.9));
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.7);
+    }
+
+    .progress-bar {
+      margin-top: 10px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(to right, #4f46e5, #22c55e);
+      transition: width 0.18s ease-out;
+    }
+
+    .persona {
+      margin-top: 10px;
+      padding: 9px 10px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      font-size: 0.84rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .persona-left strong {
+      font-size: 0.92rem;
+    }
+
+    .persona-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(129, 140, 248, 0.9);
+      font-size: 0.75rem;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .persona-metrics {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      color: #9ca3af;
+    }
+
+    .persona-metrics span {
+      border-radius: 999px;
+      padding: 2px 7px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+    }
+
+    .controls {
+      margin-top: 12px;
+    }
+
+    .step-section {
+      display: none;
+      animation: fadeIn 0.18s ease-out;
+    }
+
+    .step-section[data-active="true"] {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .field {
+      margin-bottom: 12px;
+      font-size: 0.86rem;
+    }
+
+    .field-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .field-label span.helper {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      padding: 5px 9px;
+      font-size: 0.8rem;
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #6b7280;
+    }
+
+    .chip[data-selected="true"] {
+      border-color: rgba(129, 140, 248, 0.95);
+      background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.8), rgba(15, 23, 42, 0.95));
+    }
+
+    .chip[data-selected="true"] span.dot {
+      background: #22c55e;
+    }
+
+    .chip[data-multi="false"]::after {
+      content: "•";
+      font-size: 0.7rem;
+      color: rgba(148, 163, 184, 0.9);
+      margin-left: 2px;
+    }
+
+    select,
+    input[type="number"] {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid #4b5563;
+      background: #020617;
+      color: #f9fafb;
+      font-size: 0.86rem;
+    }
+
+    select:focus,
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.9);
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    .slider-value {
+      margin-top: 2px;
+      font-size: 0.76rem;
+      color: #e5e7eb;
+      text-align: right;
+    }
+
+    .step-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .step-nav {
+      display: flex;
+      gap: 6px;
+    }
+
+    .step-btn {
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+      cursor: pointer;
+    }
+
+    .step-btn.primary {
+      border-color: rgba(129, 140, 248, 0.95);
+      background: linear-gradient(to right, #4f46e5, #06b6d4);
+      box-shadow: 0 10px 26px rgba(37, 99, 235, 0.7);
+    }
+
+    /* Recommendations */
+    .reco-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .toggle-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .switch {
+      position: relative;
+      width: 32px;
+      height: 16px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider-switch {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #111827;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      transition: 0.2s;
+    }
+
+    .slider-switch:before {
+      position: absolute;
+      content: "";
+      height: 12px;
+      width: 12px;
+      left: 2px;
+      top: 1px;
+      border-radius: 50%;
+      background-color: #e5e7eb;
+      transition: 0.2s;
+    }
+
+    .switch input:checked + .slider-switch {
+      background: linear-gradient(to right, #4f46e5, #22c55e);
+      border-color: rgba(79, 70, 229, 0.9);
+    }
+
+    .switch input:checked + .slider-switch:before {
+      transform: translateX(14px);
+    }
+
+    .reco-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .reco-item {
+      border-radius: 14px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.98);
+      padding: 10px 11px;
+      font-size: 0.86rem;
+    }
+
+    .reco-header-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .reco-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .reco-subtitle {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+
+    .score-pill {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(129, 140, 248, 0.9);
+      font-size: 0.75rem;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .score-bar {
+      margin-top: 6px;
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(to right, #4f46e5, #22c55e);
+      transition: width 0.2s ease-out;
+    }
+
+    .tag-row {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.75rem;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 3px 7px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.95);
+      color: #9ca3af;
+    }
+
+    .tag.good {
+      border-color: rgba(34, 197, 94, 0.9);
+      color: #bbf7d0;
+    }
+
+    .reco-footer {
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: #9ca3af;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .reason-text {
+      max-width: 70%;
+    }
+
+    .more-btn {
+      border-radius: 999px;
+      padding: 4px 8px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+      cursor: pointer;
+      font-size: 0.76rem;
+    }
+
+    .details {
+      margin-top: 6px;
+      border-top: 1px solid rgba(31, 41, 55, 0.95);
+      padding-top: 5px;
+      font-size: 0.78rem;
+      color: #9ca3af;
+      display: none;
+    }
+
+    .details[data-open="true"] {
+      display: block;
+    }
+
+    .details ul {
+      margin-top: 4px;
+      padding-left: 14px;
+    }
+
+    .details li {
+      margin-bottom: 3px;
+    }
+
+    .empty-state {
+      font-size: 0.86rem;
+      color: #9ca3af;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">Crownetic</div>
+      <h1>Advanced Product Chooser</h1>
+      <div class="tagline">Multi-step, persona-based recommendations – reusable for any product line.</div>
+      <p>
+        This is a generic demo. A bed store, a wood furniture maker or an energy provider can all imagine
+        their own products in these same interactions. Change only the labels and copy.
+      </p>
+    </header>
+
+    <div class="layout">
+      <!-- LEFT: WIZARD / INPUT -->
+      <section class="card">
+        <div class="steps-header">
+          <div class="steps">
+            <div class="step-pill" data-step="1" data-active="true">
+              <span class="num">1</span>
+              <span>Who & usage</span>
+            </div>
+            <div class="step-pill" data-step="2" data-active="false">
+              <span class="num">2</span>
+              <span>Budget & lifespan</span>
+            </div>
+            <div class="step-pill" data-step="3" data-active="false">
+              <span class="num">3</span>
+              <span>Feel & style</span>
+            </div>
+            <div class="step-pill" data-step="4" data-active="false">
+              <span class="num">4</span>
+              <span>Priorities</span>
+            </div>
+          </div>
+          <span style="font-size:0.8rem;color:#9ca3af;" id="stepLabel">Step 1 of 4</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="persona" id="personaBox">
+          <div class="persona-left">
+            <div class="persona-tag" id="personaTag">
+              <span>Persona: </span>
+              <strong id="personaName">Explorer</strong>
+            </div>
+            <div style="font-size:0.8rem;color:#9ca3af;margin-top:4px;" id="personaDesc">
+              Answer a few questions and we’ll build a quick “profile” of your needs.
+            </div>
+          </div>
+          <div class="persona-metrics" id="personaMetrics">
+            <span>Value: –</span>
+            <span>Comfort: –</span>
+            <span>Performance: –</span>
+            <span>Eco: –</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <!-- Step 1 -->
+          <div class="step-section" data-step="1" data-active="true">
+            <div class="field">
+              <div class="field-label">
+                <span>Who are you buying for?</span>
+                <span class="helper">single choice</span>
+              </div>
+              <div class="choice-row" data-name="buyerType">
+                <button class="chip" data-value="self" data-multi="false">
+                  <span class="dot"></span> Myself
+                </button>
+                <button class="chip" data-value="couple" data-multi="false">
+                  <span class="dot"></span> Couple / shared
+                </button>
+                <button class="chip" data-value="family" data-multi="false">
+                  <span class="dot"></span> Family / kids
+                </button>
+                <button class="chip" data-value="business" data-multi="false">
+                  <span class="dot"></span> Business / team
+                </button>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="field-label">
+                <span>How often will it be used?</span>
+                <span class="helper">drives durability weighting</span>
+              </div>
+              <select id="usageFrequency">
+                <option value="daily">Daily / all the time</option>
+                <option value="often">A few times per week</option>
+                <option value="sometimes">Sometimes / occasional</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-section" data-step="2" data-active="false">
+            <div class="field">
+              <div class="field-label">
+                <span>Budget comfort zone</span>
+                <span class="helper">slide to match your reality</span>
+              </div>
+              <input type="range" id="budgetLevel" min="1" max="3" step="1" value="2" />
+              <div class="slider-value" id="budgetLabel">Medium budget</div>
+            </div>
+
+            <div class="field">
+              <div class="field-label">
+                <span>How long should it last?</span>
+                <span class="helper">more years = more durability focus</span>
+              </div>
+              <select id="lifespan">
+                <option value="3">Around 3 years</option>
+                <option value="5" selected>5 years or more</option>
+                <option value="8">8+ years (long term)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <div class="field-label">
+                <span>Are you okay with “good enough” quality to save money?</span>
+              </div>
+              <div class="choice-row" data-name="valueTolerance">
+                <button class="chip" data-value="yes" data-multi="false">
+                  <span class="dot"></span> Yes, price first
+                </button>
+                <button class="chip" data-value="maybe" data-multi="false">
+                  <span class="dot"></span> Somewhere in the middle
+                </button>
+                <button class="chip" data-value="no" data-multi="false">
+                  <span class="dot"></span> No, quality first
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-section" data-step="3" data-active="false">
+            <div class="field">
+              <div class="field-label">
+                <span>Comfort vs performance</span>
+                <span class="helper">1 = comfort, 3 = performance</span>
+              </div>
+              <input type="range" id="feelSlider" min="1" max="3" step="1" value="2" />
+              <div class="slider-value" id="feelLabel">Balanced between comfort & performance</div>
+            </div>
+
+            <div class="field">
+              <div class="field-label">
+                <span>What style are you drawn to?</span>
+                <span class="helper">multi-select</span>
+              </div>
+              <div class="choice-row" data-name="style">
+                <button class="chip" data-value="minimal" data-multi="true">
+                  <span class="dot"></span> Clean / minimal
+                </button>
+                <button class="chip" data-value="cozy" data-multi="true">
+                  <span class="dot"></span> Warm / cozy
+                </button>
+                <button class="chip" data-value="bold" data-multi="true">
+                  <span class="dot"></span> Bold / statement
+                </button>
+                <button class="chip" data-value="natural" data-multi="true">
+                  <span class="dot"></span> Natural / eco look
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-section" data-step="4" data-active="false">
+            <div class="field">
+              <div class="field-label">
+                <span>What are your top priorities?</span>
+                <span class="helper">multi-select</span>
+              </div>
+              <div class="choice-row" data-name="priorities">
+                <button class="chip" data-value="eco" data-multi="true">
+                  <span class="dot"></span> Eco / sustainable
+                </button>
+                <button class="chip" data-value="lowMaintenance" data-multi="true">
+                  <span class="dot"></span> Low maintenance
+                </button>
+                <button class="chip" data-value="fastDelivery" data-multi="true">
+                  <span class="dot"></span> Fast delivery
+                </button>
+                <button class="chip" data-value="warranty" data-multi="true">
+                  <span class="dot"></span> Strong warranty
+                </button>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="field-label">
+                <span>Anything you absolutely want to avoid?</span>
+                <span class="helper">affects reasons & tags</span>
+              </div>
+              <select id="avoid">
+                <option value="none">No strong dislikes</option>
+                <option value="noise">Noise / distraction</option>
+                <option value="fragile">Fragile / scratches easily</option>
+                <option value="complicated">Complicated setup / settings</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-footer">
+          <div class="step-nav">
+            <button class="step-btn" id="prevStep">Back</button>
+            <button class="step-btn primary" id="nextStep">Next</button>
+          </div>
+          <span id="completionHint">You can jump between steps at any time.</span>
+        </div>
+      </section>
+
+      <!-- RIGHT: RECOMMENDATIONS -->
+      <section class="card">
+        <div class="reco-header">
+          <div>
+            <h2>Recommended product lines</h2>
+            <p class="sub">
+              We score each line 0–100 based on how well it matches your answers, then explain why.
+            </p>
+          </div>
+          <div class="toggle-line">
+            <label class="switch">
+              <input type="checkbox" id="topTwoToggle" />
+              <span class="slider-switch"></span>
+            </label>
+            <span>Show top 2 only</span>
+          </div>
+        </div>
+
+        <div class="reco-list" id="recoList">
+          <!-- Filled by JS -->
+        </div>
+
+        <div class="empty-state" id="emptyState" style="display:none;">
+          Start answering questions on the left – as soon as we know enough, we’ll rank the product lines here.
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // ------ STATE ------
+    const state = {
+      step: 1,
+      buyerType: null,
+      usageFrequency: 'daily',
+      budgetLevel: 2,
+      lifespan: 5,
+      valueTolerance: null,
+      feel: 2,
+      styles: [],
+      priorities: [],
+      avoid: 'none',
+    };
+
+    const metrics = {
+      value: 0,
+      comfort: 0,
+      performance: 0,
+      eco: 0,
+      durability: 0,
+      service: 0,
+      design: 0,
+    };
+
+    const products = [
+      {
+        id: 'essential',
+        name: 'Essential Line',
+        subtitle: 'Solid quality at a friendly price',
+        base: 55,
+        emphasis: { value: 0.9, comfort: 0.4, performance: 0.3, eco: 0.3, durability: 0.5, service: 0.5, design: 0.4 },
+      },
+      {
+        id: 'balanced',
+        name: 'Balanced Line',
+        subtitle: 'Best mix of price, comfort & lifespan',
+        base: 60,
+        emphasis: { value: 0.6, comfort: 0.7, performance: 0.5, eco: 0.5, durability: 0.7, service: 0.6, design: 0.6 },
+      },
+      {
+        id: 'premium',
+        name: 'Premium Line',
+        subtitle: 'High-end performance and longevity',
+        base: 65,
+        emphasis: { value: 0.3, comfort: 0.8, performance: 0.9, eco: 0.6, durability: 0.9, service: 0.6, design: 0.8 },
+      },
+    ];
+
+    // ------ ELEMENTS ------
+    const stepPills = document.querySelectorAll('.step-pill');
+    const stepLabel = document.getElementById('stepLabel');
+    const progressFill = document.getElementById('progressFill');
+    const stepSections = document.querySelectorAll('.step-section');
+    const prevStepBtn = document.getElementById('prevStep');
+    const nextStepBtn = document.getElementById('nextStep');
+    const completionHint = document.getElementById('completionHint');
+
+    const personaNameEl = document.getElementById('personaName');
+    const personaDescEl = document.getElementById('personaDesc');
+    const personaMetricsEl = document.getElementById('personaMetrics');
+
+    const usageFrequencySelect = document.getElementById('usageFrequency');
+    const budgetLevelInput = document.getElementById('budgetLevel');
+    const budgetLabel = document.getElementById('budgetLabel');
+    const lifespanSelect = document.getElementById('lifespan');
+    const feelSlider = document.getElementById('feelSlider');
+    const feelLabel = document.getElementById('feelLabel');
+    const avoidSelect = document.getElementById('avoid');
+    const topTwoToggle = document.getElementById('topTwoToggle');
+    const recoList = document.getElementById('recoList');
+    const emptyState = document.getElementById('emptyState');
+
+    // ------ UTILITIES ------
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function formatPercent(value) {
+      return Math.round(value) + '% match';
+    }
+
+    function calcMetrics() {
+      // reset
+      metrics.value = 0;
+      metrics.comfort = 0;
+      metrics.performance = 0;
+      metrics.eco = 0;
+      metrics.durability = 0;
+      metrics.service = 0;
+      metrics.design = 0;
+
+      // budget
+      if (state.budgetLevel === 1) metrics.value += 35;
+      if (state.budgetLevel === 2) {
+        metrics.value += 15;
+        metrics.comfort += 10;
+      }
+      if (state.budgetLevel === 3) {
+        metrics.comfort += 20;
+        metrics.performance += 10;
+        metrics.value -= 5;
+      }
+
+      // usage frequency => durability
+      if (state.usageFrequency === 'daily') metrics.durability += 30;
+      if (state.usageFrequency === 'often') metrics.durability += 20;
+      if (state.usageFrequency === 'sometimes') metrics.durability += 10;
+
+      // lifespan
+      const life = Number(state.lifespan);
+      if (life >= 8) metrics.durability += 25;
+      else if (life >= 5) metrics.durability += 15;
+      else metrics.durability += 5;
+
+      // valueTolerance
+      if (state.valueTolerance === 'yes') {
+        metrics.value += 25;
+        metrics.comfort -= 5;
+        metrics.performance -= 5;
+      } else if (state.valueTolerance === 'maybe') {
+        metrics.value += 10;
+        metrics.comfort += 5;
+      } else if (state.valueTolerance === 'no') {
+        metrics.value -= 5;
+        metrics.comfort += 15;
+        metrics.performance += 10;
+      }
+
+      // feel slider
+      if (state.feel === 1) {
+        metrics.comfort += 20;
+      } else if (state.feel === 2) {
+        metrics.comfort += 10;
+        metrics.performance += 10;
+      } else if (state.feel === 3) {
+        metrics.performance += 25;
+      }
+
+      // styles => design & eco bias
+      if (state.styles.includes('minimal')) metrics.design += 10;
+      if (state.styles.includes('cozy')) metrics.comfort += 10;
+      if (state.styles.includes('bold')) {
+        metrics.design += 15;
+        metrics.performance += 5;
+      }
+      if (state.styles.includes('natural')) {
+        metrics.eco += 15;
+        metrics.design += 5;
+      }
+
+      // priorities
+      if (state.priorities.includes('eco')) metrics.eco += 30;
+      if (state.priorities.includes('lowMaintenance')) metrics.service += 20;
+      if (state.priorities.includes('fastDelivery')) metrics.service += 15;
+      if (state.priorities.includes('warranty')) {
+        metrics.durability += 10;
+        metrics.service += 10;
+      }
+
+      // buyer type
+      if (state.buyerType === 'family') {
+        metrics.durability += 10;
+        metrics.value += 10;
+      }
+      if (state.buyerType === 'business') {
+        metrics.performance += 10;
+        metrics.service += 10;
+      }
+
+      // normalise-ish
+      Object.keys(metrics).forEach((k) => {
+        metrics[k] = clamp(metrics[k], 0, 100);
+      });
+    }
+
+    function updatePersona() {
+      calcMetrics();
+
+      const v = metrics.value;
+      const c = metrics.comfort;
+      const p = metrics.performance;
+      const e = metrics.eco;
+      const d = metrics.durability;
+      const s = metrics.service;
+
+      let personaName = 'Explorer';
+      let desc = 'You’re still exploring trade-offs between price, comfort and quality.';
+
+      if (v > c && v > p && v > e) {
+        personaName = 'Value Seeker';
+        desc = 'You want solid products without overspending – price and practicality matter most.';
+      } else if (c >= v && c >= p && c >= e) {
+        personaName = 'Comfort Lover';
+        desc = 'You care about experience and comfort, even if it costs a bit more.';
+      } else if (p >= v && p >= c && p >= e) {
+        personaName = 'Performance Hunter';
+        desc = 'You want strong performance and long-term reliability more than the lowest price.';
+      } else if (e > 40) {
+        personaName = 'Eco-Minded Planner';
+        desc = 'You’re looking for sustainable, future-proof options that feel good long term.';
+      }
+
+      personaNameEl.textContent = personaName;
+      personaDescEl.textContent = desc;
+
+      personaMetricsEl.innerHTML = `
+        <span>Value: ${v.toFixed(0)}</span>
+        <span>Comfort: ${c.toFixed(0)}</span>
+        <span>Performance: ${p.toFixed(0)}</span>
+        <span>Eco: ${e.toFixed(0)}</span>
+      `;
+    }
+
+    function scoreProduct(product) {
+      const { value, comfort, performance, eco, durability, service, design } = metrics;
+      const e = product.emphasis;
+
+      let score =
+        product.base +
+        value * e.value * 0.2 +
+        comfort * e.comfort * 0.2 +
+        performance * e.performance * 0.2 +
+        eco * e.eco * 0.15 +
+        durability * e.durability * 0.15 +
+        service * e.service * 0.1 +
+        design * e.design * 0.1;
+
+      score = clamp(score, 0, 100);
+      return score;
+    }
+
+    function buildReasons(product, score) {
+      const reasons = [];
+      const { value, comfort, performance, eco, durability, service } = metrics;
+
+      if (product.id === 'essential') {
+        if (value > 40) reasons.push('Keeps total cost under control while still feeling solid.');
+        if (state.budgetLevel === 1) reasons.push('Lines up with your preference for a lower budget.');
+        if (state.valueTolerance === 'yes') reasons.push('You said you’re okay with “good enough” quality to save money.');
+      }
+
+      if (product.id === 'balanced') {
+        if (value > 25 && comfort > 25)
+          reasons.push('Balances price and comfort, which matches your mixed priorities.');
+        if (durability > 30) reasons.push('Built to handle regular use over multiple years.');
+        if (state.valueTolerance === 'maybe')
+          reasons.push('You want something in the middle – not the cheapest, not the most extreme.');
+      }
+
+      if (product.id === 'premium') {
+        if (performance > 40) reasons.push('Responds to your focus on performance and high-end feel.');
+        if (durability > 40) reasons.push('Designed for long-term use with strong materials and warranty.');
+        if (state.valueTolerance === 'no')
+          reasons.push('You clearly signalled that quality beats price for you.');
+      }
+
+      if (metrics.eco > 35 && state.priorities.includes('eco')) {
+        reasons.push('Includes a strong emphasis on sustainable materials or lower footprint.');
+      }
+
+      if (state.priorities.includes('fastDelivery')) {
+        reasons.push('Options for faster delivery or setup are available in this line.');
+      }
+
+      if (state.priorities.includes('lowMaintenance')) {
+        reasons.push('Low-maintenance by design, so you don’t have to think about it every week.');
+      }
+
+      if (reasons.length === 0) {
+        reasons.push('A good general-purpose match for the preferences you selected.');
+      }
+
+      return reasons;
+    }
+
+    function buildTags(product) {
+      const tags = [];
+
+      if (product.id === 'essential') {
+        tags.push('Budget friendly');
+        if (metrics.value > 30) tags.push('High value match');
+        if (metrics.durability > 25) tags.push('Surprisingly durable');
+      }
+
+      if (product.id === 'balanced') {
+        tags.push('Most popular pick');
+        if (metrics.comfort > 30 && metrics.value > 20) tags.push('Comfort vs price sweet spot');
+        if (metrics.durability > 30) tags.push('Great for daily use');
+      }
+
+      if (product.id === 'premium') {
+        tags.push('High-end choice');
+        if (metrics.performance > 30) tags.push('Performance focused');
+        if (metrics.durability > 35) tags.push('Long lifespan');
+      }
+
+      if (state.priorities.includes('eco')) tags.push('Eco-friendly option');
+      if (state.priorities.includes('warranty')) tags.push('Strong warranty options');
+
+      return tags;
+    }
+
+    function updateRecommendations() {
+      calcMetrics();
+
+      const scored = products.map((p) => ({
+        ...p,
+        score: scoreProduct(p),
+      }));
+
+      scored.sort((a, b) => b.score - a.score);
+
+      let display = scored;
+      if (topTwoToggle.checked) display = scored.slice(0, 2);
+
+      recoList.innerHTML = '';
+      if (!state.buyerType && !state.valueTolerance && state.styles.length === 0) {
+        emptyState.style.display = 'block';
+        return;
+      }
+      emptyState.style.display = 'none';
+
+      display.forEach((p) => {
+        const scorePercent = p.score;
+        const reasons = buildReasons(p, scorePercent);
+        const tags = buildTags(p);
+
+        const item = document.createElement('div');
+        item.className = 'reco-item';
+        item.dataset.id = p.id;
+
+        item.innerHTML = `
+          <div class="reco-header-row">
+            <div>
+              <div class="reco-title">${p.name}</div>
+              <div class="reco-subtitle">${p.subtitle}</div>
+            </div>
+            <div class="score-pill">${formatPercent(scorePercent)}</div>
+          </div>
+          <div class="score-bar">
+            <div class="score-fill" style="width:${scorePercent.toFixed(0)}%;"></div>
+          </div>
+          <div class="tag-row">
+            ${tags
+              .map(
+                (t, idx) =>
+                  `<span class="tag ${idx === 0 ? 'good' : ''}">
+                    ${t}
+                  </span>`
+              )
+              .join('')}
+          </div>
+          <div class="reco-footer">
+            <div class="reason-text">
+              ${reasons[0]}
+            </div>
+            <button class="more-btn" type="button" data-role="toggleDetails">Details</button>
+          </div>
+          <div class="details" data-open="false">
+            <div>More reasons this line fits you:</div>
+            <ul>
+              ${reasons
+                .slice(1)
+                .map((r) => `<li>${r}</li>`)
+                .join('')}
+            </ul>
+            <div style="margin-top:6px;font-size:0.76rem;color:#a5b4fc;">
+              In a real project this area would include <strong>real product names, photos and a CTA button</strong>.
+            </div>
+          </div>
+        `;
+
+        item.addEventListener('click', (e) => {
+          if (e.target && e.target.dataset.role === 'toggleDetails') {
+            const details = item.querySelector('.details');
+            const open = details.getAttribute('data-open') === 'true';
+            details.setAttribute('data-open', open ? 'false' : 'true');
+            e.target.textContent = open ? 'Details' : 'Hide details';
+          }
+        });
+
+        recoList.appendChild(item);
+      });
+    }
+
+    // ------ STEP HANDLING ------
+    function setStep(step) {
+      state.step = clamp(step, 1, 4);
+
+      stepPills.forEach((pill) => {
+        const s = Number(pill.getAttribute('data-step'));
+        pill.setAttribute('data-active', s === state.step ? 'true' : 'false');
+      });
+
+      stepSections.forEach((section) => {
+        const s = Number(section.getAttribute('data-step'));
+        section.setAttribute('data-active', s === state.step ? 'true' : 'false');
+      });
+
+      stepLabel.textContent = `Step ${state.step} of 4`;
+      const progress = (state.step / 4) * 100;
+      progressFill.style.width = `${progress}%`;
+
+      prevStepBtn.disabled = state.step === 1;
+      nextStepBtn.textContent = state.step === 4 ? 'Finish' : 'Next';
+
+      if (state.step === 4) {
+        completionHint.textContent = 'You’re on the last step – tweak priorities and watch the right side change.';
+      } else {
+        completionHint.textContent = 'You can jump between steps at any time.';
+      }
+    }
+
+    stepPills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const step = Number(pill.getAttribute('data-step'));
+        setStep(step);
+      });
+    });
+
+    prevStepBtn.addEventListener('click', () => {
+      setStep(state.step - 1);
+    });
+
+    nextStepBtn.addEventListener('click', () => {
+      if (state.step < 4) {
+        setStep(state.step + 1);
+      } else {
+        setStep(4);
+      }
+    });
+
+    // ------ INPUT HANDLERS ------
+    // generic chip handler
+    const chipGroups = document.querySelectorAll('.choice-row');
+
+    chipGroups.forEach((group) => {
+      const name = group.getAttribute('data-name');
+      const chips = group.querySelectorAll('.chip');
+
+      chips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const multi = chip.getAttribute('data-multi') === 'true';
+          const value = chip.getAttribute('data-value');
+
+          if (!multi) {
+            chips.forEach((c) => c.setAttribute('data-selected', 'false'));
+            chip.setAttribute('data-selected', 'true');
+          } else {
+            const selected = chip.getAttribute('data-selected') === 'true';
+            chip.setAttribute('data-selected', selected ? 'false' : 'true');
+          }
+
+          if (name === 'buyerType') {
+            const selectedChip = Array.from(chips).find(
+              (c) => c.getAttribute('data-selected') === 'true'
+            );
+            state.buyerType = selectedChip ? selectedChip.getAttribute('data-value') : null;
+          }
+
+          if (name === 'valueTolerance') {
+            const selectedChip = Array.from(chips).find(
+              (c) => c.getAttribute('data-selected') === 'true'
+            );
+            state.valueTolerance = selectedChip ? selectedChip.getAttribute('data-value') : null;
+          }
+
+          if (name === 'style') {
+            state.styles = Array.from(chips)
+              .filter((c) => c.getAttribute('data-selected') === 'true')
+              .map((c) => c.getAttribute('data-value'));
+          }
+
+          if (name === 'priorities') {
+            state.priorities = Array.from(chips)
+              .filter((c) => c.getAttribute('data-selected') === 'true')
+              .map((c) => c.getAttribute('data-value'));
+          }
+
+          updatePersona();
+          updateRecommendations();
+        });
+      });
+    });
+
+    usageFrequencySelect.addEventListener('change', () => {
+      state.usageFrequency = usageFrequencySelect.value;
+      updatePersona();
+      updateRecommendations();
+    });
+
+    budgetLevelInput.addEventListener('input', () => {
+      state.budgetLevel = Number(budgetLevelInput.value);
+      let label = 'Medium budget';
+      if (state.budgetLevel === 1) label = 'Tighter budget / entry level';
+      if (state.budgetLevel === 3) label = 'Comfortable / premium budget';
+      budgetLabel.textContent = label;
+      updatePersona();
+      updateRecommendations();
+    });
+
+    lifespanSelect.addEventListener('change', () => {
+      state.lifespan = Number(lifespanSelect.value);
+      updatePersona();
+      updateRecommendations();
+    });
+
+    feelSlider.addEventListener('input', () => {
+      state.feel = Number(feelSlider.value);
+      let label = 'Balanced between comfort & performance';
+      if (state.feel === 1) label = 'Comfort & softness first';
+      if (state.feel === 3) label = 'Performance & “feel strong” first';
+      feelLabel.textContent = label;
+      updatePersona();
+      updateRecommendations();
+    });
+
+    avoidSelect.addEventListener('change', () => {
+      state.avoid = avoidSelect.value;
+      updateRecommendations();
+    });
+
+    topTwoToggle.addEventListener('change', () => {
+      updateRecommendations();
+    });
+
+    // ------ INIT ------
+    setStep(1);
+    updatePersona();
+    updateRecommendations();
+  </script>
+</body>
+</html>
