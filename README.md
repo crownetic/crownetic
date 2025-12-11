@@ -1,16 +1,12 @@
-## Hi there 👋
+## Crownetic – Checklist
 
-<!--
-**crownetic/crownetic** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+- [x] Buy domain **crownetic.com**
+- [x] Create email address **crownetic@hotmail.com**
+- [x] Create GitHub repository for Crownetic
 
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- [ ] Choose what to build first (simple landing page / portfolio / tool)
+- [ ] Build the website and push code to GitHub
+- [ ] Choose hosting (e.g. Vercel, Netlify, GitHub Pages)
+- [ ] Connect **crownetic.com** to your hosting (DNS / domain settings)
+- [ ] Enable HTTPS (SSL certificate) for secure https://crownetic.com
+- [ ] Test the website on mobile & desktop
