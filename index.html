@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Crownetic – Minimal websites, tools & AI-flows</title>
+  <title>Crownetic – Minimal websites, interne tools & AI-flows voor mkb</title>
 
-  <meta name="description" content="Crownetic is een freelance designer & front-end developer voor minimal websites, interne tools en AI-flows die processen versimpelen en tijd besparen voor bureaus en mkb." />
+  <meta name="description" content="Crownetic is freelance designer & front-end developer voor minimal websites, interne tools en AI-flows die processen versimpelen en tijd besparen." />
   <link rel="canonical" href="https://crownetic.com/" />
   <meta name="robots" content="index,follow" />
 
@@ -16,11 +16,17 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Crownetic – Minimal websites, tools & AI-flows" />
+  <meta property="og:title" content="Crownetic – Minimal websites, interne tools & AI-flows voor mkb" />
   <meta property="og:description" content="Freelance designer & front-end developer voor minimal websites, interne tools en AI-flows die werk lichter maken." />
   <meta property="og:url" content="https://crownetic.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://crownetic.com/assets/logo.png" />
+
+  <!-- Twitter / X cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Crownetic – Minimal websites, interne tools & AI-flows" />
+  <meta name="twitter:description" content="Minimal websites, interne tools en AI-flows die processen versimpelen en tijd besparen." />
+  <meta name="twitter:image" content="https://crownetic.com/assets/logo.png" />
 
   <!-- Structured data: Organization -->
   <script type="application/ld+json">
@@ -57,7 +63,7 @@
         "name": "Wat doet Crownetic precies?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Crownetic ontwerpt en bouwt minimal websites, interne tools en AI-flows die processen versimpelen en tijd besparen voor bureaus en mkb."
+          "text": "Crownetic ontwerpt en bouwt minimal websites, interne tools en AI-flows die processen versimpelen en tijd besparen."
         }
       },
       {
@@ -86,6 +92,15 @@
       }
     ]
   }
+  </script>
+
+  <!-- Google Analytics 4 – vervang G-XXXXXXX door je eigen ID als je GA wilt gebruiken -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
   </script>
 
   <style>
@@ -508,6 +523,10 @@
       width: 40%;
     }
 
+    .hero-mini-text {
+      margin-top: 6px;
+    }
+
     /* GENERIC SECTIONS */
 
     .section {
@@ -591,13 +610,6 @@
       min-height: 130px;
     }
 
-    .tile-title {
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-
     .tile-tag {
       display: inline-block;
       padding: 3px 7px;
@@ -606,6 +618,13 @@
       color: #4338ca;
       font-size: 10px;
       margin-bottom: 8px;
+    }
+
+    .tile-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text);
     }
 
     .tile-list {
@@ -690,6 +709,13 @@
       max-width: 27rem;
     }
 
+    .contact-bullets {
+      margin: 8px 0 10px;
+      padding-left: 18px;
+      font-size: 12px;
+      color: #d0d0dd;
+    }
+
     .contact-actions {
       display: flex;
       flex-direction: column;
@@ -766,6 +792,15 @@
       text-decoration: underline;
     }
 
+    .honeypot-input {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
     /* FOOTER */
 
     footer {
@@ -795,6 +830,7 @@
       flex-wrap: wrap;
       gap: 8px;
       font-size: 11px;
+      align-items: center;
     }
 
     /* RESPONSIVE */
@@ -835,6 +871,60 @@
       .contact-card {
         padding: 22px 18px 20px;
       }
+      .contact-actions {
+        min-width: 0;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding: 26px 18px 24px;
+        border-radius: 24px;
+        margin-bottom: 44px;
+      }
+      .hero-meta {
+        font-size: 10px;
+      }
+      h1 {
+        font-size: 26px;
+      }
+      .hero-sub {
+        font-size: 13px;
+      }
+      .hero-usecases {
+        font-size: 12px;
+        padding-left: 18px;
+      }
+      .btn-primary,
+      .nav-cta,
+      .contact-submit {
+        width: 100%;
+        justify-content: center;
+      }
+      nav {
+        gap: 8px;
+      }
+      .section-card {
+        padding: 22px 16px 18px;
+      }
+      .section-heading {
+        font-size: 17px;
+      }
+      .section-text {
+        font-size: 12px;
+      }
+      .contact-card {
+        padding: 20px 16px 18px;
+      }
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .footer-share span {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -843,7 +933,10 @@
     <header>
       <div class="brand">
         <div class="brand-mark" aria-hidden="true">
-          <img src="assets/logo.png" alt="Crownetic logo" width="36" height="36" />
+          <picture>
+            <source srcset="assets/logo.webp" type="image/webp" />
+            <img src="assets/logo.png" alt="Crownetic logo" width="36" height="36" />
+          </picture>
         </div>
         <div>
           <div class="brand-text-main">crownetic</div>
@@ -939,7 +1032,7 @@
                 <div class="hero-mini-line"></div>
                 <div class="hero-mini-line short"></div>
               </div>
-              <div style="margin-top:6px;">
+              <div class="hero-mini-text">
                 Eén scherm in plaats van vijf losse tools.
               </div>
             </div>
@@ -953,7 +1046,7 @@
                 <div class="hero-mini-line accent"></div>
                 <div class="hero-mini-line tiny"></div>
               </div>
-              <div style="margin-top:6px;">
+              <div class="hero-mini-text">
                 Slim voorwerk; een mens beslist de laatste stap.
               </div>
             </div>
@@ -1015,7 +1108,7 @@
         <div class="steps">
           <div class="step">
             <div class="step-label">Situatie</div>
-            <div class="step-title">Veel heen-en-weer mail</div>
+            <h3 class="step-title">Veel heen-en-weer mail</h3>
             <p>
               Intakes kwamen binnen via mail, telefoon en losse formulieren.
               Overzicht raakte kwijt en het maken van offertes kostte onnodig veel tijd.
@@ -1023,7 +1116,7 @@
           </div>
           <div class="step">
             <div class="step-label">Oplossing</div>
-            <div class="step-title">Één intake-interface</div>
+            <h3 class="step-title">Één intake-interface</h3>
             <p>
               Een minimal webflow waarin alle vragen, bijlagen en status
               in één scherm samenkomen. Aansluitend op de tools die al gebruikt werden.
@@ -1031,7 +1124,7 @@
           </div>
           <div class="step">
             <div class="step-label">Resultaat</div>
-            <div class="step-title">Minder gedoe, sneller duidelijk</div>
+            <h3 class="step-title">Minder gedoe, sneller duidelijk</h3>
             <p>
               Minder mail heen en weer, sneller duidelijke offertes en beter
               overzicht voor het team. Precies het soort versimpeling waar Crownetic voor staat.
@@ -1063,7 +1156,7 @@
         <div class="grid-3">
           <div class="tile">
             <div class="tile-tag">Website</div>
-            <div class="tile-title">Rustige marketing- & productpagina’s</div>
+            <h3 class="tile-title">Rustige marketing- & productpagina’s</h3>
             <ul class="tile-list">
               <li>Heldere landingspagina’s met één hoofddoel</li>
               <li>Product- of dienstuitleg zonder ruis</li>
@@ -1071,7 +1164,7 @@
           </div>
           <div class="tile">
             <div class="tile-tag">Interne tool</div>
-            <div class="tile-title">Één scherm voor je proces</div>
+            <h3 class="tile-title">Één scherm voor je proces</h3>
             <ul class="tile-list">
               <li>Offerte-, intake- of statusflows op maat</li>
               <li>Sluit aan op hoe je team nu al werkt</li>
@@ -1079,7 +1172,7 @@
           </div>
           <div class="tile">
             <div class="tile-tag">AI-flow</div>
-            <div class="tile-title">Kleine AI-stappen in je workflow</div>
+            <h3 class="tile-title">Kleine AI-stappen in je workflow</h3>
             <ul class="tile-list">
               <li>Voorwerk voor teksten en antwoorden</li>
               <li>Minder copy-paste, meer focuswerk</li>
@@ -1109,7 +1202,7 @@
 
         <div class="steps">
           <div class="step">
-            <div class="step-title">Freelance designer & developer</div>
+            <h3 class="step-title">Freelance designer & developer</h3>
             <p>
               Ik werk als freelance designer en front-end developer en help teams met
               rustige, minimal interfaces. Ervaring met projecten voor o.a. Noordkroon,
@@ -1117,14 +1210,14 @@
             </p>
           </div>
           <div class="step">
-            <div class="step-title">Focus op eenvoud</div>
+            <h3 class="step-title">Focus op eenvoud</h3>
             <p>
               Liever één kleine interface die dagelijks gebruikt wordt dan een groot
               platform dat in de la verdwijnt. Elke pixel moet bijdragen aan minder gedoe.
             </p>
           </div>
           <div class="step">
-            <div class="step-title">Taal & techniek</div>
+            <h3 class="step-title">Taal & techniek</h3>
             <p>
               Ik denk mee over de woorden, de flow én de techniek. Zodat design, copy en
               front-end bij elkaar passen en het geheel rustig aanvoelt.
@@ -1153,7 +1246,7 @@
         <div class="steps">
           <div class="step">
             <div class="step-label">Stap 1</div>
-            <div class="step-title">Probleem scherp</div>
+            <h3 class="step-title">Probleem scherp</h3>
             <p>
               In een korte call bekijken we waar tijd weglekt: in offertes,
               intakes, interne afstemming of iets anders. We kiezen één proces om mee te beginnen.
@@ -1161,7 +1254,7 @@
           </div>
           <div class="step">
             <div class="step-label">Stap 2</div>
-            <div class="step-title">Concept & interface</div>
+            <h3 class="step-title">Concept & interface</h3>
             <p>
               We kiezen de slimste vorm: website, interne tool, AI-flow
               of een combinatie. Altijd minimal, zonder extra ruis of set-up gedoe.
@@ -1169,7 +1262,7 @@
           </div>
           <div class="step">
             <div class="step-label">Stap 3</div>
-            <div class="step-title">Bouw & iteratie</div>
+            <h3 class="step-title">Bouw & iteratie</h3>
             <p>
               Ik bouw, we testen met echte gebruikers en scherpen bij.
               Zodat je niet alleen iets moois hebt, maar ook echt tijd wint.
@@ -1186,7 +1279,7 @@
           <div class="contact-title">Heb je een proces dat slimmer kan?</div>
           <div class="contact-text">
             Herken je één van deze dingen?
-            <ul style="margin:8px 0 10px; padding-left:18px; font-size:12px; color:#d0d0dd;">
+            <ul class="contact-bullets">
               <li>Veel heen-en-weer mail bij aanvragen of offertes</li>
               <li>Je team werkt in 4–5 verschillende tools voor één proces</li>
               <li>Je weet dat AI kan helpen, maar niet waar te beginnen</li>
@@ -1208,7 +1301,7 @@
             <input type="hidden" name="_subject" value="Nieuwe uitdaging via crownetic.com" />
             <input type="hidden" name="_template" value="table" />
             <!-- Anti-spam honeypot -->
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="text" name="_honey" class="honeypot-input" tabindex="-1" autocomplete="off" />
 
             <div class="field">
               <label for="name">Naam</label>
@@ -1235,9 +1328,9 @@
           </form>
 
           <div class="contact-note">
-            Je bericht wordt verstuurd naar <strong>crownetic@hotmail.com</strong> via FormSubmit.
-            Werkt het formulier niet? Mail dan direct naar
-            <a href="mailto:crownetic@hotmail.com">crownetic@hotmail.com</a>.
+            Werkt het formulier niet? Gebruik dan de knop hieronder om een e-mail te openen.
+            <br />
+            <button type="button" class="contact-submit js-email-button">Stuur een e-mail</button>
           </div>
         </div>
       </div>
@@ -1276,7 +1369,7 @@
           <li>
             <div class="faq-item-question">Hoe start een samenwerking?</div>
             <div>
-              Je deelt je uitdaging via het formulier of per mail. Daarna volgt een korte
+              Je deelt je uitdaging via het formulier. Daarna volgt een korte
               intake en een voorstel met aanpak en globale planning.
             </div>
           </li>
@@ -1303,7 +1396,21 @@
   </main>
 
   <script>
+    // Huidig jaar in de footer
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // E-mail via JS, zodat het adres niet als platte tekst in HTML staat
+    (function () {
+      const user = "crownetic";
+      const domain = "hotmail.com";
+      const addr = user + "@" + domain;
+
+      document.querySelectorAll(".js-email-button").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          window.location.href = "mailto:" + addr;
+        });
+      });
+    })();
   </script>
 </body>
 </html>
