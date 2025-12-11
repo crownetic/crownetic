@@ -6,7 +6,7 @@
 
   <title>Crownetic – Minimal websites & tools die werk lichter maken</title>
 
-  <meta name="description" content="Crownetic helpt bureaus en mkb met minimal websites, interne tools en AI-flows die uren per week aan repetitief werk besparen. Rustige interfaces, moderne front-end." />
+  <meta name="description" content="Crownetic maakt minimal websites, interne tools en AI-flows die processen versimpelen en tijd besparen voor bureaus en mkb." />
   <link rel="canonical" href="https://crownetic.com/" />
 
   <!-- Open Graph -->
@@ -38,12 +38,15 @@
       --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.10);
       --radius-xl: 32px;
       --radius-lg: 22px;
-      --radius-md: 12px;
       --max-width: 1080px;
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -64,6 +67,17 @@
       padding: 40px 20px 80px;
     }
 
+    a, button, input, textarea {
+      outline-offset: 2px;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--accent);
+    }
+
     /* HEADER */
 
     header {
@@ -71,7 +85,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding-bottom: 24px;
+      padding-bottom: 32px;
     }
 
     .brand {
@@ -125,6 +139,7 @@
       padding: 6px 10px;
       border-radius: 999px;
       border: 1px solid transparent;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
     }
 
     nav a:hover {
@@ -147,25 +162,36 @@
       font-size: 13px;
       font-weight: 500;
       text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
     }
 
     .nav-cta:hover {
-      opacity: 0.9;
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
     }
 
     /* HERO */
 
     .hero {
-      margin-top: 32px;
-      margin-bottom: 72px;
-      padding: 48px 40px 44px;
+      margin-top: 24px;
+      margin-bottom: 88px;
+      padding: 52px 42px 48px;
       border-radius: var(--radius-xl);
       background: linear-gradient(135deg, #ffffff, #f7fbff);
       box-shadow: var(--shadow-soft);
       display: grid;
       grid-template-columns: minmax(0, 2.1fr) minmax(0, 2fr);
-      gap: 48px;
+      gap: 56px;
       align-items: center;
+    }
+
+    .hero-meta {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 6px;
     }
 
     .pill {
@@ -178,6 +204,7 @@
       border: 1px solid rgba(0, 0, 0, 0.05);
       font-size: 11px;
       color: var(--muted);
+      margin-bottom: 4px;
     }
 
     .pill-dot {
@@ -190,7 +217,7 @@
     h1 {
       font-size: clamp(32px, 4vw, 40px);
       line-height: 1.15;
-      margin: 20px 0 12px;
+      margin: 16px 0 10px;
       letter-spacing: -0.02em;
     }
 
@@ -204,8 +231,8 @@
     .hero-sub {
       font-size: 14px;
       color: var(--muted);
-      max-width: 32rem;
-      margin-bottom: 18px;
+      max-width: 30rem;
+      margin-bottom: 14px;
     }
 
     .hero-usecases {
@@ -216,7 +243,7 @@
     }
 
     .hero-usecases li {
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .hero-actions {
@@ -224,7 +251,7 @@
       flex-wrap: wrap;
       gap: 12px;
       align-items: center;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .btn-primary {
@@ -242,16 +269,20 @@
       font-weight: 500;
       text-decoration: none;
       cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
     }
 
     .btn-primary:hover {
-      opacity: 0.9;
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
     }
 
     .hero-note {
-      margin-top: 8px;
+      margin-top: 6px;
       font-size: 12px;
       color: var(--muted);
+      max-width: 26rem;
     }
 
     .hero-visual {
@@ -260,7 +291,7 @@
       min-height: 260px;
       border-radius: 26px;
       background: radial-gradient(circle at 10% 0, #e0f0ff, #fdfdff);
-      padding: 18px 18px 18px;
+      padding: 18px;
       overflow: hidden;
       border: 1px solid rgba(0, 0, 0, 0.04);
     }
@@ -401,13 +432,13 @@
     /* GENERIC SECTIONS */
 
     .section {
-      margin-top: 72px;
+      margin-top: 82px;
     }
 
     .section-card {
       background: var(--bg-soft);
       border-radius: var(--radius-lg);
-      padding: 28px 24px 24px;
+      padding: 30px 24px 24px;
       border: 1px solid var(--border-subtle);
       box-shadow: 0 16px 40px rgba(15, 23, 42, 0.04);
     }
@@ -417,18 +448,18 @@
       align-items: baseline;
       justify-content: space-between;
       gap: 18px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .section-title {
-      font-size: 14px;
+      font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
     .section-heading {
-      font-size: 20px;
+      font-size: 19px;
       margin-top: 4px;
       letter-spacing: -0.01em;
     }
@@ -436,7 +467,7 @@
     .section-text {
       font-size: 13px;
       color: var(--muted);
-      max-width: 28rem;
+      max-width: 26rem;
     }
 
     /* RECENT WORK */
@@ -444,21 +475,26 @@
     .logo-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px 18px;
+      gap: 10px 16px;
       font-size: 13px;
-      color: #3b3b45;
       margin-top: 8px;
     }
 
     .logo-pill {
-      padding: 6px 10px;
+      padding: 6px 11px;
       border-radius: 999px;
       background: #f7f7fb;
       border: 1px solid var(--border-subtle);
       white-space: nowrap;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    /* TILES / AANPAK */
+    .logo-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+    }
+
+    /* SERVICES */
 
     .grid-3 {
       display: grid;
@@ -479,7 +515,7 @@
     .tile-title {
       font-size: 14px;
       font-weight: 500;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       color: var(--text);
     }
 
@@ -493,11 +529,21 @@
       margin-bottom: 8px;
     }
 
+    .tile-list {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 12px;
+    }
+
+    .tile-list li {
+      margin-bottom: 4px;
+    }
+
     /* CONTACT */
 
     .contact-card {
-      margin-top: 36px;
-      padding: 26px 24px 22px;
+      margin-top: 34px;
+      padding: 24px 24px 22px;
       border-radius: var(--radius-lg);
       background: #111118;
       color: #f5f5f7;
@@ -576,27 +622,13 @@
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .contact-submit:hover {
       background: #e4e4ee;
-    }
-
-    .contact-status {
-      font-size: 11px;
-      margin-top: 4px;
-    }
-
-    .contact-status--info {
-      color: #d0d0dd;
-    }
-
-    .contact-status--success {
-      color: #4ade80;
-    }
-
-    .contact-status--error {
-      color: #fca5a5;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
     }
 
     .contact-note {
@@ -613,7 +645,7 @@
     /* FOOTER */
 
     footer {
-      margin-top: 60px;
+      margin-top: 68px;
       padding-top: 20px;
       border-top: 1px solid rgba(0, 0, 0, 0.06);
       display: flex;
@@ -658,10 +690,10 @@
       }
       .hero {
         margin-top: 20px;
-        margin-bottom: 52px;
+        margin-bottom: 60px;
       }
       .section {
-        margin-top: 56px;
+        margin-top: 60px;
       }
       .grid-3 {
         grid-template-columns: 1fr;
@@ -687,32 +719,33 @@
 
       <nav>
         <a href="#work">Recent werk</a>
-        <a href="#how">Aanpak</a>
+        <a href="#services">Waarmee</a>
         <a href="#contact" class="nav-cta">Deel je uitdaging</a>
       </nav>
     </header>
 
     <section class="hero" aria-label="Crownetic hero">
       <div>
+        <div class="hero-meta">Freelance design & development</div>
         <div class="pill">
           <span class="pill-dot"></span>
-          Interfaces die tijd besparen en werk lichter maken
+          Interfaces die tijd besparen en rust geven
         </div>
 
         <h1>
-          Rustige <span>websites, tools en AI-flows</span><br />
-          voor teams die tijd willen terugwinnen.
+          Minimal <span>websites, tools en AI-flows</span><br />
+          rond één ding: minder gedoe in je werk.
         </h1>
 
         <p class="hero-sub">
-          Crownetic helpt bureaus en mkb met minimal interfaces voor websites, interne tools
-          en AI-flows. Minder klikken, minder ruis – meer overzicht in het werk van elke dag.
+          Ik help bureaus en mkb met rustige interfaces die bestaande processen
+          simpeler maken in plaats van nóg een tool erbij te zetten.
         </p>
 
         <ul class="hero-usecases">
-          <li>Offerte- en intakeprocessen versimpelen</li>
+          <li>Offertes en intakes in één duidelijke flow</li>
           <li>Interne taken bundelen in één tool</li>
-          <li>Kleine AI-flows voor repetitief werk</li>
+          <li>Kleine AI-stappen die repetitief werk overnemen</li>
         </ul>
 
         <div class="hero-actions">
@@ -722,8 +755,8 @@
         </div>
 
         <div class="hero-note">
-          3–5 zinnen over je situatie zijn genoeg. Je krijgt geen sales-praatje,
-          maar een eerlijke reactie of een concreet voorstel.
+          Schrijf kort wat je doet en waar het nu vastloopt.
+          Je krijgt een eerlijke reactie of een concreet voorstel.
         </div>
       </div>
 
@@ -745,8 +778,8 @@
             <div class="hero-card-line muted"></div>
             <div class="hero-card-line muted short"></div>
             <div class="hero-card-tags">
-              <div class="hero-card-tag">Landing pages</div>
-              <div class="hero-card-tag">Product uitleg</div>
+              <div class="hero-card-tag">Landing</div>
+              <div class="hero-card-tag">Product</div>
               <div class="hero-card-tag">Minimal UI</div>
             </div>
           </div>
@@ -764,7 +797,7 @@
                 <div class="hero-mini-line short"></div>
               </div>
               <div style="margin-top:6px;">
-                Taken bundelen in één scherm in plaats van vijf verschillende tools.
+                Eén scherm in plaats van vijf losse tools.
               </div>
             </div>
 
@@ -778,7 +811,7 @@
                 <div class="hero-mini-line tiny"></div>
               </div>
               <div style="margin-top:6px;">
-                Kleine AI-stappen die repetitief werk overnemen en je team tijd teruggeven.
+                Slim voorwerk; een mens beslist de laatste stap.
               </div>
             </div>
           </div>
@@ -793,13 +826,12 @@
           <div>
             <div class="section-title">Recent werk</div>
             <h2 class="section-heading">
-              Ervaring met uiteenlopende merken
+              Meegebouwd aan sites en tools voor:
             </h2>
           </div>
           <p class="section-text">
-            Meegebouwd aan sites en projecten voor o.a. Noordkroon, Woodlabs, Smølke,
-            De Rode Winkel, IQIP, Oogvereniging, EDSN en Leger des Heils
-            (via verschillende bureaus en teams).
+            Onder andere Noordkroon, Woodlabs, Smølke, De Rode Winkel, IQIP,
+            Oogvereniging, EDSN en Leger des Heils (via verschillende bureaus en teams).
           </p>
         </div>
 
@@ -816,46 +848,46 @@
       </div>
     </section>
 
-    <!-- AANPAK -->
-    <section id="how" class="section" aria-label="Aanpak">
+    <!-- SERVICES -->
+    <section id="services" class="section" aria-label="Waarmee kan ik helpen">
       <div class="section-card">
         <div class="section-header">
           <div>
-            <div class="section-title">Aanpak</div>
+            <div class="section-title">Waarmee</div>
             <h2 class="section-heading">
-              Minimal websites, tools & AI-flows – altijd rond één probleem
+              Eén iemand die meedenkt en het ook bouwt
             </h2>
           </div>
           <p class="section-text">
-            We beginnen niet met pixels, maar met de vraag: welk stuk werk moet lichter?
-            Daarna kiezen we of een website, interne tool of AI-flow het beste antwoord is.
+            Geen generieke tool, maar een gerichte interface rond jouw proces:
+            site, interne tool of AI-flow.
           </p>
         </div>
 
         <div class="grid-3">
           <div class="tile">
-            <div class="tile-tag">Stap 1</div>
-            <div class="tile-title">Uitdaging scherp krijgen</div>
-            <p>
-              In een korte call brengen we je proces in kaart. Waar gaat tijd verloren?
-              Waar raakt je team gefrustreerd? Dat vormt de basis voor alles.
-            </p>
+            <div class="tile-tag">Website</div>
+            <div class="tile-title">Rustige marketing- & productpagina’s</div>
+            <ul class="tile-list">
+              <li>Heldere landingspagina’s met één hoofddoel</li>
+              <li>Product- of dienstuitleg zonder ruis</li>
+            </ul>
           </div>
           <div class="tile">
-            <div class="tile-tag">Stap 2</div>
-            <div class="tile-title">Concept & interface</div>
-            <p>
-              We vertalen de uitdaging naar een minimal interface: website, interne tool
-              of AI-flow met zo min mogelijk ruis en duidelijkheid per scherm.
-            </p>
+            <div class="tile-tag">Interne tool</div>
+            <div class="tile-title">Één scherm voor je proces</div>
+            <ul class="tile-list">
+              <li>Offerte-, intake- of statusflows op maat</li>
+              <li>Sluit aan op hoe je team al werkt</li>
+            </ul>
           </div>
           <div class="tile">
-            <div class="tile-tag">Stap 3</div>
-            <div class="tile-title">Bouw & iteratie</div>
-            <p>
-              De gekozen oplossing wordt gebouwd, getest en bijgeschaafd op basis van gebruik.
-              Zodat het ook in de dagelijkse praktijk echt tijd teruggeeft.
-            </p>
+            <div class="tile-tag">AI-flow</div>
+            <div class="tile-title">Kleine AI-stappen in je workflow</div>
+            <ul class="tile-list">
+              <li>Voorwerk voor teksten en antwoorden</li>
+              <li>Minder copy-paste, meer focuswerk</li>
+            </ul>
           </div>
         </div>
 
@@ -864,13 +896,13 @@
           <div>
             <div class="contact-title">Heb je een proces dat slimmer kan?</div>
             <div class="contact-text">
-              Denk aan offertes maken, intakevragen, interne afstemming of terugkerende klantvragen.
-              Vaak is één gerichte interface al genoeg om veel tijd terug te winnen.
+              Denk aan offertes, intakes, terugkerende klantvragen of interne afstemming.
+              Vaak is één gerichte interface al genoeg om merkbaar tijd te winnen.
             </div>
           </div>
 
           <div class="contact-actions">
-            <!-- FormSubmit: vervangt de backend -->
+            <!-- FormSubmit: gratis backend -->
             <form
               id="contact-form"
               class="contact-form"
@@ -880,8 +912,8 @@
               <!-- FormSubmit options -->
               <input type="hidden" name="_subject" value="Nieuwe uitdaging via crownetic.com" />
               <input type="hidden" name="_template" value="table" />
-              <!-- optional: redirect URL na succes -->
-              <!-- <input type="hidden" name="_next" value="https://crownetic.com/bedankt.html" /> -->
+              <!-- Anti-spam honeypot -->
+              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
               <div class="field">
                 <label for="name">Naam</label>
@@ -906,8 +938,9 @@
               </div>
               <button type="submit" class="contact-submit">Verstuur je uitdaging</button>
             </form>
-            <div id="form-status" class="contact-status"></div>
+
             <div class="contact-note">
+              Je bericht wordt verstuurd naar <strong>crownetic@hotmail.com</strong> via FormSubmit.
               Werkt het formulier niet? Mail dan direct naar
               <a href="mailto:crownetic@hotmail.com">crownetic@hotmail.com</a>.
             </div>
@@ -925,24 +958,7 @@
   </main>
 
   <script>
-    // Dynamisch jaar
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Kleine UX-touch voor status (werkt ook als FormSubmit redirect gebruikt wordt minder)
-    const form = document.getElementById("contact-form");
-    const statusEl = document.getElementById("form-status");
-
-    function setStatus(type, message) {
-      statusEl.textContent = message;
-      statusEl.className = "contact-status";
-      if (type === "info") statusEl.classList.add("contact-status--info");
-      if (type === "success") statusEl.classList.add("contact-status--success");
-      if (type === "error") statusEl.classList.add("contact-status--error");
-    }
-
-    form.addEventListener("submit", () => {
-      setStatus("info", "Formulier wordt verstuurd…");
-    });
   </script>
 </body>
 </html>
